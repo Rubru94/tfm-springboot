@@ -25,7 +25,7 @@ spec:
         - name: SPRING_MYSQLDB_HOST
           value: mysqldb
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://mysqldb:3306/tfm_springboot
+          value: jdbc:mysql://mysqldb:3306/test
         - name: SPRING_DATASOURCE_USERNAME
           value: root
         - name: SPRING_DATASOURCE_PASSWORD
