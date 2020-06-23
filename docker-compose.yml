@@ -20,6 +20,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MYSQL_ROOT_PASSWORD=password
+      - TZ=-3:00
     ports:
       - "3306:3306"
     volumes:
