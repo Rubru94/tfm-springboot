@@ -21,7 +21,7 @@ jobs:
       #run: mvn -B clean package -Dtest=ControllerUnitTest --file pom.xml 
   
   start_app:
-    name: Run docker-compose
+    name: Docker-compose
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
       run: docker-compose up
 
   unit_test:
-    name: Pass unit test
+    name: Unit test
     runs-on: ubuntu-latest
     needs: [start_app]
     steps:
