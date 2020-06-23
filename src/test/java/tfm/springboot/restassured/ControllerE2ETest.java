@@ -36,9 +36,9 @@ public class ControllerE2ETest {
 		final String NAME = "CustomerTest";
 		final int AGE = 50;
 		
-		AtomicLong lastPostId = new AtomicLong();
+		AtomicLong lastCustomerId = new AtomicLong();
 		Customer customer = new Customer(NAME, 50);
-		customer.setId(lastPostId.incrementAndGet());
+		customer.setId(lastCustomerId.incrementAndGet());
 				
 		given().
 			contentType("application/json").
