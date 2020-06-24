@@ -27,6 +27,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Set up MySQL
       uses: mirromutth/mysql-action@v1.1
         with:
           host port: 3306 # Optional, default value is 3306. The port of host
