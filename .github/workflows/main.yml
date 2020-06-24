@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build app without test
+    name: Build app with test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,9 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: mvn -B clean package -DskipTests --file pom.xml 
+      run: mvn -B clean package -DskipTests --file pom.xml
+    - name: Pass test
+      run: mvn test 
 
   unit_test:
     name: Run docker-compose 
@@ -30,5 +32,3 @@ jobs:
         java-version: 11
     - name: Run docker-compose 
       run: docker-compose up
-    - name: Pass unit test
-      run: mvn -B clean package -Dtest=ControllerUnitTest --file pom.xml 
