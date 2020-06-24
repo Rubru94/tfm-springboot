@@ -14,9 +14,11 @@ jobs:
       mysql:
         image: mysql:8
         ports:
-          - 3306
+          - 3307
         env:
           MYSQL_DATABASE: test
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: password
     steps:
     - uses: actions/checkout@v2
