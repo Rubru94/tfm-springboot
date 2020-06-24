@@ -29,6 +29,9 @@ jobs:
         java-version: 11
     - name: Set up MySQL
       uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql database: 'test' # Optional, default value is "test". The specified database which will be create
+        mysql root password: password # Required if "mysql user" is empty, default is empty. The root superuser password
     - name: Build with Maven
       run: mvn -B clean package -DskipTests --file pom.xml
     - name: Pass test
