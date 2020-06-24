@@ -37,7 +37,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B clean package -DskipTests --file pom.xml
     - name: Pass test
-      run: mvn test
+      run: mvn test -Dtest=ControllerUnitTest
       env: 
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
 
