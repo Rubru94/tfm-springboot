@@ -37,7 +37,7 @@ jobs:
           MYSQL_DATABASE: test
           #MYSQL_USER: root
           #MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         options: --health-cmd="mysqladmin ping" --health-interval=25s --health-timeout=5s --health-retries=3
     steps:
     - uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
         character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
         collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
         mysql database: 'test' # Optional, default value is "test". The specified database which will be create
-        mysql root password: password # Required if "mysql user" is empty, default is empty. The root superuser password
+        mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }} # Required if "mysql user" is empty, default is empty. The root superuser password
     - name: Pass test
       run: mvn test -Dtest=ControllerUnitTest
       env: 
