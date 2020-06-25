@@ -3,8 +3,6 @@ name: Master CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -35,8 +33,6 @@ jobs:
           - 3306
         env:
           MYSQL_DATABASE: test
-          #MYSQL_USER: root
-          #MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         options: --health-cmd="mysqladmin ping" --health-interval=25s --health-timeout=5s --health-retries=3
     steps:
@@ -48,10 +44,10 @@ jobs:
     - name: Set up MySQL
       uses: mirromutth/mysql-action@v1.1
       with:
-        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
-        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
-        mysql database: 'test' # Optional, default value is "test". The specified database which will be create
-        mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }} # Required if "mysql user" is empty, default is empty. The root superuser password
+        character set server: 'utf8' 
+        collation server: 'utf8_general_ci'
+        mysql database: 'test' 
+        mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }}
     - name: Pass test
       run: mvn test -Dtest=ControllerUnitTest
       env: 
