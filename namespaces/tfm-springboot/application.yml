@@ -8,8 +8,6 @@ metadata:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.tfm-springboot: semver:~0.0
 spec:
-  # strategy:
-  #   type: Recreate
   selector:
     matchLabels:
       app: application
@@ -25,7 +23,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: application
-        image: rubru94/tfm-springboot:0.0.1
+        image: rubru94/tfm-springboot:0.0.2
         env:
         - name: SPRING_MYSQLDB_HOST
           value: mysqldb
@@ -51,5 +49,4 @@ spec:
   selector:
     app: application
   type: LoadBalancer
-  
-  
+
