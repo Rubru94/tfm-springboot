@@ -13,6 +13,8 @@ spec:
   selector:
     matchLabels:
       app: application
+  strategy:
+    type: RollingUpdate
   replicas: 1 # tells deployment to run 1 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
