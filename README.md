@@ -120,11 +120,6 @@ La parte de integración continua se lleva a cabo empleando **GitHub Actions**, 
 
 ### Requisitos
 
-- **Kubectl** , para interactuar con el clúster de Kubernetes, con las siguientes versiones:
-
-  - Client Version v1.8.7
-  - Server Version v1.18.3
-
 - **Helm** , que permitirá empaquetar y gestionar las aplicaciones de Kubernetes. Versión igual o superior a la v3.1.1.
 
 - **fluxctl** , en una versión igual o superior a la v1.19.0, que nos permitirá acceder al servicio FluxCD instalado en el clúster de Kubernetes.
