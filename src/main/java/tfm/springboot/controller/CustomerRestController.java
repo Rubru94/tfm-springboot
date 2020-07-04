@@ -17,43 +17,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tfm.springboot.model.Customer;
 import tfm.springboot.repository.CustomerRepository;
+import tfm.springboot.service.CustomerService;
 
 @RestController
 public class CustomerRestController {
-	
+
 	@Autowired
-	private CustomerRepository customerRepository;
-	
+	private CustomerService customerService;
+
 	@PostConstruct
 	public void init() {
-		
+
 		Customer c1 = new Customer("Alfredo", "Perez");
-		customerRepository.save(c1);
+		customerService.addCustomer(c1);
 		Customer c2 = new Customer("Gumersindo", "Azcarate");
-		customerRepository.save(c2);
+		customerService.addCustomer(c2);	}
+
+	@GetMapping("/api/customers")
+	public List<Customer> getAllCustomers() {
+
+		return customerService.getAllCustomers();
 	}
 
-	@GetMapping("/customers")
-	public List<Customer> getAllCustomers() {
-		return customerRepository.findAll();
-	}
-	
-	@GetMapping("/customer/{id}")
+	@GetMapping("/api/customer/{id}")
 	public ResponseEntity<Customer> showPost(@PathVariable long id) {
-		Optional<Customer> op = customerRepository.findById(id);
-		if (op.isPresent()) {
-			Customer customer = op.get();
+
+		Customer customer = customerService.getCustomer(id);
+		if (customer != null) {
 			return new ResponseEntity<>(customer, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	@PostMapping("/customer")
+
+	@PostMapping("/api/customer")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Customer createPost(@RequestBody Customer customer) {
-		customerRepository.save(customer);
-		return customer;
+	public Customer createCustomer(@RequestBody Customer customer) {
+
+		return customerService.addCustomer(customer);
 	}
 
 }
