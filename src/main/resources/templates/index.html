@@ -1,0 +1,16 @@
+<html>
+<body>
+
+	<h1>Customers</h1>
+
+	{{#customers}}
+	<a href="/customer/{{id}}">{{name}}&nbsp;{{lastname}}</a>
+	<br>
+	<br>
+	{{/customers}}
+
+	<hr>
+	<a href="/customer/new">New customer</a>
+
+</body>
+</html>

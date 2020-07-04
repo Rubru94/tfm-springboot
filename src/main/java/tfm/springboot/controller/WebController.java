@@ -21,7 +21,7 @@ public class WebController {
 	@GetMapping("/")
 	public String customers(Model model) {
 		model.addAttribute("customers", this.customerService.getAllCustomers());
-		return "customers";
+		return "index";
 	}
 
 	@GetMapping("/customer/{id}")
