@@ -1,9 +1,6 @@
 package tfm.springboot.mockmvc;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -18,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import tfm.springboot.Customer;
+import tfm.springboot.model.Customer;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -34,11 +31,11 @@ public class ControllerIntegrationTest {
 	@Order(1)
 	public void createCustomer() throws Exception {
 
-		final String NAME = "CustomerTest";
-		final int AGE = 50;
+		final String NAME = "TestName";
+		final String LASTNAME = "TestLastname";
 
 		AtomicLong lastCustomerId = new AtomicLong();
-		Customer customer = new Customer(NAME, AGE);
+		Customer customer = new Customer(NAME, LASTNAME);
 		customer.setId(lastCustomerId.incrementAndGet());
 		
 		System.out.println(customer.getId());

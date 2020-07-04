@@ -1,4 +1,4 @@
-package tfm.springboot;
+package tfm.springboot.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import tfm.springboot.model.Customer;
+import tfm.springboot.repository.CustomerRepository;
+
 @RestController
 public class CustomerRestController {
 	
@@ -24,9 +27,9 @@ public class CustomerRestController {
 	@PostConstruct
 	public void init() {
 		
-		Customer c1 = new Customer("Alfredo",25);
+		Customer c1 = new Customer("Alfredo", "Perez");
 		customerRepository.save(c1);
-		Customer c2 = new Customer("Gumersindo",30);
+		Customer c2 = new Customer("Gumersindo", "Azcarate");
 		customerRepository.save(c2);
 	}
 

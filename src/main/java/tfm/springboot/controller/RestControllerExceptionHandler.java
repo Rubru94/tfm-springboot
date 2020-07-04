@@ -1,4 +1,4 @@
-package tfm.springboot;
+package tfm.springboot.controller;
 
 import java.util.NoSuchElementException;
 

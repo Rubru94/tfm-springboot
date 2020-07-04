@@ -14,7 +14,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.restassured.RestAssured;
-import tfm.springboot.Customer;
+import tfm.springboot.model.Customer;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ControllerE2ETest {
@@ -33,11 +33,11 @@ public class ControllerE2ETest {
 	@Test
 	public void createCustomer() throws Exception {
 
-		final String NAME = "CustomerTest";
-		final int AGE = 50;
+		final String NAME = "TestName";
+		final String LASTNAME = "TestLastname";
 		
 		AtomicLong lastCustomerId = new AtomicLong();
-		Customer customer = new Customer(NAME, 50);
+		Customer customer = new Customer(NAME, LASTNAME);
 		customer.setId(lastCustomerId.incrementAndGet());
 				
 		given().
@@ -48,7 +48,7 @@ public class ControllerE2ETest {
 		then().
 			statusCode(201).
 			body("name", equalTo(NAME)).
-			body("age", equalTo(AGE));
+			body("lastname", equalTo(LASTNAME));
 	}
 	
 }
