@@ -40,7 +40,7 @@ public class ControllerIntegrationTest {
 		
 		System.out.println(customer.getId());
 
-		mvc.perform(post("/customer").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(post("/api/customer").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(customer))).andExpect(status().isCreated());
 	}
 

@@ -44,7 +44,7 @@ public class ControllerE2ETest {
 			contentType("application/json").
 			body(objectMapper.writeValueAsString(customer)).
 		when().
-			post("/customer").
+			post("/api/customer").
 		then().
 			statusCode(201).
 			body("name", equalTo(NAME)).
