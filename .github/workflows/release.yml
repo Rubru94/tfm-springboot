@@ -1,25 +1,19 @@
-name: Create release
+name: Upload Release
 
 on:
-  push:
-    branches: [ master ]
-    tags:
-        - 'v*'
-  
+  release:
+    types: [published]
+
+
 jobs:
-  build:
-    name: Create Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    docker-compose:
+      name: Run docker-compose 
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          java-version: 11
+      - name: Run docker-compose 
+        run: docker-compose up
