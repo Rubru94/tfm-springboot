@@ -2,7 +2,7 @@
 
 ## CI - GitHub Actions
 
-La parte de integración continua se lleva a cabo empleando **GitHub Actions**, definiendo unos [workflows](.github/workflows) diferenciados según el evento de interacción con el repositorio:
+La integración continua se lleva a cabo empleando **GitHub Actions**, definiendo unos [workflows](.github/workflows) diferenciados según el evento de interacción con el repositorio:
 
 - [**main.yml**](.github/workflows/main.yml): Se disparará por cada *push* a *máster*, y contiene los siguientes jobs:
 
@@ -62,22 +62,6 @@ La parte de integración continua se lleva a cabo empleando **GitHub Actions**, 
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
   ```
 
-  - ***Run docker-compose***: Se ejecuta el *docker-compose* con la imágen de la aplicación almacenada en *dockerhub* (test).
-
-  ```
-  docker-compose:
-    name: Run docker-compose 
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Run docker-compose 
-      run: docker-compose up
-  ```
-
 - [**pullrequest.yml**](.github/workflows/pullrequest.yml): Se disparará por cada *merge* a *máster*, y contiene el siguiente job:
 
   - ***Build app with all test***: Se construye la aplicación pasando todos los test
@@ -115,6 +99,29 @@ La parte de integración continua se lleva a cabo empleando **GitHub Actions**, 
           env: 
             DB_PORT: ${{ job.services.mysql.ports[3306] }}
   ```
+
+- [**release.yml**](.github/workflows/release.yml): Se disparará con la publicación de cada nueva release, y contiene el siguiente job:
+
+  - ***Build & push docker image***: Se construye y publica la imagen docker en el repositorio de dockerhub
+
+  ```
+  docker-image:
+      name: Build & push docker image
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      - name: Build & push docker image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: rubru94/tfm-springboot
+          tags: ${{ steps.get_version.outputs.VERSION }}
+  ```
+
 
 ## CD - Flux
 
