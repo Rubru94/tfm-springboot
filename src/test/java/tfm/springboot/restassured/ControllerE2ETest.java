@@ -37,7 +37,7 @@ public class ControllerE2ETest {
 		final String LASTNAME = "TestLastname";
 		
 		AtomicLong lastCustomerId = new AtomicLong();
-		Customer customer = new Customer(NAME, LASTNAME);
+		Customer customer = new Customer(NAME, LASTNAME, null);
 		customer.setId(lastCustomerId.incrementAndGet());
 				
 		given().

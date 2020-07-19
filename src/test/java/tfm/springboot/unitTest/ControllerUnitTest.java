@@ -16,7 +16,7 @@ public class ControllerUnitTest {
 		final String NAME = "TestName";
 		final String LASTNAME = "TestLastname";
 
-		Customer customer = new Customer(NAME, LASTNAME);
+		Customer customer = new Customer(NAME, LASTNAME, null);
 		assertEquals(customer.getName(), NAME);
 	}
 

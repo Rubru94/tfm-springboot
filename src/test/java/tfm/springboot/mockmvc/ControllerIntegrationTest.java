@@ -35,7 +35,7 @@ public class ControllerIntegrationTest {
 		final String LASTNAME = "TestLastname";
 
 		AtomicLong lastCustomerId = new AtomicLong();
-		Customer customer = new Customer(NAME, LASTNAME);
+		Customer customer = new Customer(NAME, LASTNAME, null);
 		customer.setId(lastCustomerId.incrementAndGet());
 		
 		System.out.println(customer.getId());

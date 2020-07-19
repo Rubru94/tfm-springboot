@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
@@ -14,26 +15,28 @@ public class Customer {
 
 	private String name;
 	private String lastname;
-	private String phone;
 	private String email;
-	private String company;
+
+	@OneToOne
+	private Company company;
 
 	public Customer() {
 
 	}
-	
-	public Customer(String name, String lastname) {
+
+	public Customer(String name, String lastname, String email) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
+		this.email = email;
 	}
 
-	public Customer(String name, String lastname, String phone, String email, String company) {
+	public Customer(String name, String lastname, String email, Company company) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
-		this.phone = phone;
 		this.email = email;
+		this.company = company;
 	}
 
 	public long getId() {
@@ -60,14 +63,6 @@ public class Customer {
 		this.lastname = lastname;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -76,18 +71,16 @@ public class Customer {
 		this.email = email;
 	}
 
-	public String getCompany() {
+	public Company getCompany() {
 		return company;
 	}
 
-	public void setCompany(String company) {
+	public void setCompany(Company company) {
 		this.company = company;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", lastname=" + lastname + 
-				", phone=" + phone + ", email= " + email + 
-				", company=" + company + "]";
+		return "Customer [name=" + name + ", lastname=" + lastname + ", email= " + email + ", company=" + company + "]";
 	}
 }
