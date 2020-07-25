@@ -12,10 +12,12 @@
 	
 	<h1>Select company</h1>
 	<form action="/customer/{{customer.id}}/company" method="post">
-		<p>Name</p>
-		<input type="text" name="name"/>
-		<p>Country</p>
-		<select name="country">
+		<p>VAT/REG Number *</p>
+		<input type="text" name="vatregnumber" required/>
+		<p>Name *</p>
+		<input type="text" name="name" required/>
+		<p>Country *</p>
+		<select name="country" required>
 		  <option value="Spain">Spain</option>
 		  <option value="England">England</option>
 		  <option value="EEUU">EEUU</option>

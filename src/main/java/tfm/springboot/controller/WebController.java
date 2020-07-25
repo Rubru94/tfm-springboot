@@ -11,13 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import tfm.springboot.model.Company;
 import tfm.springboot.model.Customer;
-import tfm.springboot.model.industries.Industries;
-import tfm.springboot.model.industries.Logistic;
-import tfm.springboot.model.industries.Services;
 import tfm.springboot.service.CompanyService;
 import tfm.springboot.service.CustomerService;
-import tfm.springboot.service.LogisticIndService;
-import tfm.springboot.service.ServicesIndService;
 
 @Controller
 public class WebController {
@@ -28,11 +23,6 @@ public class WebController {
 	@Autowired
 	private CompanyService companyService;
 	
-	@Autowired
-	private LogisticIndService logisticIndService;
-	
-	@Autowired
-	private ServicesIndService servicesIndService;
 
 	@GetMapping("/")
 	public String customers(Model model) {
@@ -86,25 +76,18 @@ public class WebController {
 			return "error";
 		}
 		
-		Company com = new Company(company.getName(), company.getCountry(), company.getIndustry());		
-		
-		if (com.getIndustry().equals(Industries.LOGISTIC.getName())) {
-			Logistic logistic = new Logistic();
-			com.setLogistic(logistic);
-			this.logisticIndService.addLogisticInd(logistic);
+		Company com = this.companyService.getCompanyByVatregnumber(company.getVatregnumber());
+		if( com != null) {
+			com.addCustomer(customer);
+		}else {
+			com = new Company(company.getVatregnumber(), company.getName(), company.getCountry(), company.getIndustry());
+			com.addCustomer(customer);
+			this.companyService.addCompany(com);
 		}
-
-		if (com.getIndustry().equals(Industries.SERVICES.getName())) {
-			Services services = new Services();
-			com.setService(services);
-			this.servicesIndService.addServiceInd(services);
-		}
-		
-		this.companyService.addCompany(com);
 		
 		customer.setCompany(com);
 		this.customerService.addCustomer(customer);
-
+		
 		return "company";
 		//return "redirect:/customer/" + customer.getId();
 	}

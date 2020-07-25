@@ -1,13 +1,14 @@
 package tfm.springboot.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import tfm.springboot.model.industries.Logistic;
-import tfm.springboot.model.industries.Services;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Company {
@@ -16,30 +17,28 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	private String vatregnumber;
 	private String name;
 	private String country;
 	private String industry;
 
-	@OneToOne
-	private Logistic logistic;
-
-	@OneToOne
-	private Services services;
-
-	private int employees;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+	private List<Customer> customers = new ArrayList<>();
 
 	public Company() {
 
 	}
 
-	public Company(String name, String country) {
+	public Company(String vatregnumber, String name, String country) {
 		super();
+		this.vatregnumber = vatregnumber;
 		this.name = name;
 		this.country = country;
 	}
 
-	public Company(String name, String country, String industry) {
+	public Company(String vatregnumber, String name, String country, String industry) {
 		super();
+		this.vatregnumber = vatregnumber;
 		this.name = name;
 		this.country = country;
 		this.industry = industry;
@@ -51,6 +50,14 @@ public class Company {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getVatregnumber() {
+		return vatregnumber;
+	}
+
+	public void setVatregnumber(String vatregnumber) {
+		this.vatregnumber = vatregnumber;
 	}
 
 	public String getName() {
@@ -69,14 +76,6 @@ public class Company {
 		this.country = country;
 	}
 
-	public int getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(int employees) {
-		this.employees = employees;
-	}
-	
 	public String getIndustry() {
 		return industry;
 	}
@@ -85,25 +84,25 @@ public class Company {
 		this.industry = industry;
 	}
 
-	public Logistic getLogistic() {
-		return logistic;
+	public List<Customer> getCustomers() {
+		return customers;
 	}
 
-	public void setLogistic(Logistic logistic) {
-		this.logistic = logistic;
+	public void addCustomer(Customer customer) {
+		this.customers.add(customer);
 	}
 
-	public Services getService() {
-		return services;
+	public void removeCustomer(int position) {
+		this.customers.remove(position);
 	}
 
-	public void setService(Services services) {
-		this.services = services;
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
 	}
 
 	@Override
 	public String toString() {
-		return "Company [id= " + id + " name=" + name + ", country=" + country + ", employees=" + employees + "]";
+		return "Company [id= " + id + " name=" + name + ", country=" + country + ", industry=" + industry + "]";
 	}
 
 }
