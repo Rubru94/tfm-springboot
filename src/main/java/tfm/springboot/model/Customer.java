@@ -1,10 +1,15 @@
 package tfm.springboot.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -17,8 +22,11 @@ public class Customer {
 	private String lastname;
 	private String email;
 
-	@OneToOne
+	@ManyToOne
 	private Company company;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	private List<Budget> budgets = new ArrayList<>();
 
 	public Customer() {
 
@@ -79,8 +87,25 @@ public class Customer {
 		this.company = company;
 	}
 
+	public List<Budget> getBudgets() {
+		return budgets;
+	}
+
+	public void setBudgets(List<Budget> budgets) {
+		this.budgets = budgets;
+	}
+	
+	public void addBudget(Budget budget) {
+		this.budgets.add(budget);
+	}
+
+	public void removeCustomer(int position) {
+		this.budgets.remove(position);
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", lastname=" + lastname + ", email= " + email + ", company=" + company + "]";
+		return "Customer [name=" + name + ", lastname=" + lastname + ", email= " + email + ", company=" + company
+				+ ", budgets=" + budgets + "]";
 	}
 }
