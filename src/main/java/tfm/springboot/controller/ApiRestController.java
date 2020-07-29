@@ -67,7 +67,7 @@ public class ApiRestController {
 		Product product = new Product("INVENTORY", "Gestion de Inventario", "Producto Gestion de Inventario", 15);
 		this.productService.addProduct(product);
 
-		Budget budget = new Budget(new Date(), 1000, c1);
+		Budget budget = new Budget(new Date(), c1);
 		this.budgetService.addBudget(budget);
 
 		BudgetProduct budgetProduct = new BudgetProduct(budget, product, new Date());
@@ -149,7 +149,7 @@ public class ApiRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		Budget bud = new Budget(budget.getDate(), budget.getTotal(), customer);
+		Budget bud = new Budget(budget.getDate(), customer);
 
 		for (BudgetProduct budgetProduct : budget.getProducts()) {
 

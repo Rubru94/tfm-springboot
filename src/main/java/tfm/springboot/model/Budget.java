@@ -32,10 +32,9 @@ public class Budget {
 
 	}
 
-	public Budget(Date date, double total, Customer customer) {
+	public Budget(Date date, Customer customer) {
 		super();
 		this.date = date;
-		this.total = total;
 		this.customer = customer;
 	}
 
@@ -81,6 +80,7 @@ public class Budget {
 
 	public void addProduct(BudgetProduct product) {
 		this.products.add(product);
+		this.total += product.getProduct().getExpenseHours();
 	}
 
 	public void removeCustomer(int position) {

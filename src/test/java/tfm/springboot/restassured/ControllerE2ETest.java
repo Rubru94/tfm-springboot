@@ -110,7 +110,7 @@ public class ControllerE2ETest {
 		List<Product> products = new ArrayList<>();
 		products.add(p1); products.add(p2);
 
-		Budget budget = new Budget(new Date(), 2000, customer);
+		Budget budget = new Budget(new Date(), customer);
 
 		ForBudgetBudgetProductDTO forBudgetBudgetProductDTO;
 
