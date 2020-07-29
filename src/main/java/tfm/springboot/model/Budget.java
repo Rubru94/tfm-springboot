@@ -24,20 +24,19 @@ public class Budget {
 
 	@ManyToOne
 	private Customer customer;
-	
+
 	@OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BudgetProduct> products = new ArrayList<>();
-	
+
 	public Budget() {
-		
+
 	}
 
-	public Budget(Date date, double total, Customer customer/*, List<BudgetProduct> products*/) {
+	public Budget(Date date, double total, Customer customer) {
 		super();
 		this.date = date;
 		this.total = total;
 		this.customer = customer;
-		//this.products = products;
 	}
 
 	public long getId() {
@@ -47,7 +46,7 @@ public class Budget {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -79,7 +78,7 @@ public class Budget {
 	public void setProducts(List<BudgetProduct> products) {
 		this.products = products;
 	}
-	
+
 	public void addProduct(BudgetProduct product) {
 		this.products.add(product);
 	}

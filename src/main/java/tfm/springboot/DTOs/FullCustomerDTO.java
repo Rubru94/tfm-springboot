@@ -66,4 +66,8 @@ public class FullCustomerDTO {
 	public void setBudgets(List<BasicBudgetDTO> budgets) {
 		this.budgets = budgets;
 	}
+	
+	public void addBudget(BasicBudgetDTO budget) {
+		this.budgets.add(budget);
+	}
 }

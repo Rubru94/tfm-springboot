@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tfm.springboot.DTOs.BasicBudgetDTO;
 import tfm.springboot.DTOs.FullBudgetDTO;
 import tfm.springboot.model.Budget;
 import tfm.springboot.repository.BudgetRepository;
@@ -25,6 +26,14 @@ public class BudgetService {
 	}
 
 	public Budget convertFullBudgetDtoToEntity(FullBudgetDTO budget) {
+		return modelMapper.map(budget, Budget.class);
+	}
+	
+	public BasicBudgetDTO convertToBasicBudgetDTO(Budget budget) {
+		return modelMapper.map(budget, BasicBudgetDTO.class);
+	}
+
+	public Budget convertBasicBudgetDtoToEntity(BasicBudgetDTO budget) {
 		return modelMapper.map(budget, Budget.class);
 	}
 

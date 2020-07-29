@@ -48,8 +48,13 @@ public class FullBudgetDTO {
 	public List<ForBudgetBudgetProductDTO> getProducts() {
 		return products;
 	}
+	
+	public void addProduct(ForBudgetBudgetProductDTO product) {
+		this.products.add(product);
+	}
 
 	public void setProducts(List<ForBudgetBudgetProductDTO> products) {
 		this.products = products;
 	}
+	
 }
