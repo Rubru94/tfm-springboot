@@ -50,6 +50,16 @@ public class ProductService {
 		}
 		return null;
 	}
+	
+	public Product getProductByCode(String code) {
+
+		Optional<Product> op = productRepository.findByCode(code);
+		if (op.isPresent()) {
+			Product product = op.get();
+			return product;
+		}
+		return null;
+	}
 
 	public Product addProduct(Product product) {
 		productRepository.save(product);

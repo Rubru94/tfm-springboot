@@ -1,5 +1,6 @@
 package tfm.springboot.controller;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,10 +50,34 @@ public class ApiRestController {
 	@Autowired
 	private BudgetProductService budgetProductService;
 
+	final List<Product> PRODUCTS = Arrays.asList(
+			new Product("AF", "Advanced Finance",
+					"Oriented towards companies that require recurring billing to their clients", 30),
+			new Product("AP", "Advanced Purchases",
+					"The Advanced Purchases module will help you keep track of your purchases by relating the authorized price lists to the contracts you have assets",
+					40),
+			new Product("GL", "General Ledger",
+					"With the Multiple Accounting module you will have the movements in the corresponding Books automatically and immediately without creating duplications that must be eliminated later",
+					55),
+			new Product("SM", "Software Management",
+					"Deploy the enhancements you've created and share electronic documents and information with the Software Management module",
+					75),
+			new Product("HR", "Human Resources",
+					"The Resource Allocation module allows you to measure the occupation of your resources and the activities in which they are committed with start and end dates",
+					25));
+
 	@PostConstruct
 	public void init() {
 
 		// Initial example data load
+
+		for (Product p : PRODUCTS) {
+
+			if (this.productService.getProductByCode(p.getCode()) == null) {
+
+				this.productService.addProduct(p);
+			}
+		}
 
 		Company co1 = new Company("B15248631", "IBM", "Spain");
 		companyService.addCompany(co1);
@@ -156,9 +181,9 @@ public class ApiRestController {
 			BudgetProduct bp = new BudgetProduct(bud, budgetProduct.getProduct(), new Date());
 			this.budgetProductService.addBudgetProduct(bp);
 
-			bud.addProduct(bp); 
+			bud.addProduct(bp);
 			this.productService.addProduct(budgetProduct.getProduct());
-			budgetProduct.getProduct().addBudget(bp); 
+			budgetProduct.getProduct().addBudget(bp);
 			this.budgetService.addBudget(bud);
 		}
 
