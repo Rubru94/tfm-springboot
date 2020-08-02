@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+
+	<h1>Select products</h1>
+
+	<div class="flex-container-wrap x-center-content">
+
+		{{#products}}
+
+		<div class="container" style="margin: 2%;">
+			<div class="card"
+				style="width: 500px; height: 250px; position: relative;">
+				<header class="container light-green">
+					<h3>{{name}}</h3>
+				</header>
+				<div class="container">
+					<p>{{code}}</p>
+					<hr>
+					<p>{{description}}</p>
+					<br>
+				</div>
+				<button id="button_{{code}}" class="button block dark-grey"
+					style="position: absolute; bottom: 0;" onclick="selectProduct({{id}}, {{customer.id}}, this)">+
+					Add</button>
+			</div>
+		</div>
+
+		{{/products}}
+
+	</div>
+
+	<hr>
+
+	<form id="prodForm" action="#" method="post">
+		<input type="submit" value="Enviar" />
+	</form>
+
+	<a href="/"> Atrás </a>
+
+	<script src="/js/product.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+#div {
+	border: solid 1px;
+	border-radius: 5px;
+	padding: 20px;
+}
+
+.card {
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0
+		rgba(0, 0, 0, 0.19)
+}
+
+.container {
+	padding: 0.01em 16px
+}
+
+.light-green {
+	color: #000 !important;
+	background-color: #00e09866 !important
+}
+
+.button {
+	border: none;
+	display: inline-block;
+	padding: 8px 16px;
+	vertical-align: middle;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background-color: inherit;
+	text-align: center;
+	cursor: pointer;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.button:hover {
+	color: #000 !important;
+	background-color: #ccc !important
+}
+
+.block {
+	display: block;
+	width: 100%
+}
+
+.dark-grey {
+	color: #fff !important;
+	background-color: #616161;
+}
+
+.x-center-content {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -211,7 +211,7 @@ public class ApiRestController {
 	}
 
 	@GetMapping("/api/products")
-	public List<FullProductDTO> listBasicProducts() {
+	public List<FullProductDTO> listProducts() {
 
 		List<Product> products = this.productService.getAllProducts();
 		return products.stream().map((product) -> this.productService.convertToFullProductDTO(product))
