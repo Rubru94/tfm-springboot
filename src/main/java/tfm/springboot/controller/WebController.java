@@ -102,7 +102,8 @@ public class WebController {
 		customer.setCompany(com);
 		this.customerService.addCustomer(customer);
 
-		return "company";
+		// return "company";
+		return "redirect:/customer/" + customer.getId() + "/products";
 	}
 
 	@GetMapping("/customer/{id}/products")
@@ -121,36 +122,52 @@ public class WebController {
 	}
 
 	@PostMapping("/customer/{id}/budget")
-	public String addCustomerBudget(HttpSession session, @PathVariable long id, @RequestParam(name = "prods") String prods, Model model) {
+	public String addCustomerBudget(HttpSession session, @PathVariable long id,
+			@RequestParam(name = "prods") String prods, Model model) {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
 			model.addAttribute("errorMessage", "Not found client id " + id);
 			return "error";
 		}
-		
-		BudgetProduct bp; 
+
+		BudgetProduct bp;
 		Product product;
 		Budget budget = new Budget(new Date(), customer);
 
 		String[] vector = prods.split(";");
 
 		for (String s : vector) {
-			
+
 			product = this.productService.getProduct(Long.valueOf(s));
-									
+
 			bp = new BudgetProduct(budget, product, new Date());
-			
+
 			budget.addProduct(bp);
 			this.productService.addProduct(product);
-			
+
 			product.addBudget(bp);
 			this.budgetService.addBudget(budget);
 		}
 
 		customer.addBudget(budget);
 
-		return "redirect:/";
+		return "redirect:/customer/" + customer.getId() + "/lastBudget";
+	}
+
+	@GetMapping("/customer/{id}/lastBudget")
+	public String lastCustomerBudget(@PathVariable long id, Model model) {
+
+		Customer customer = this.customerService.getCustomer(id);
+		if (customer == null) {
+			model.addAttribute("errorMessage", "Not found client id " + id);
+			return "error";
+		}
+
+		model.addAttribute("customer", customer);
+
+		model.addAttribute("lastBudget", customer.getBudgets().get(customer.getBudgets().size() - 1));
+		return "budget";
 	}
 
 }
