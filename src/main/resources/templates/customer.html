@@ -1,38 +1,94 @@
 <html>
+
+<head>
+<link rel="stylesheet" href="/css/newCustomer.css">
+</head>
+
 <body>
 
-	<h1>{{customer.name}}&nbsp;{{customer.lastname}}</h1>
-	<h2>Email: {{customer.email}}</h2>
-	<h2>ID: {{customer.id}}</h2>
-	{{#customer.company}}
-  		<h2><a href="/customer/{{customer.id}}/company"> Company</a>: {{customer.company.name}}</h2>
-	{{/customer.company}}
-	
-	<hr>
-	
-	<h1>Select company</h1>
-	<form action="/customer/{{customer.id}}/company" method="post">
-		<p>VAT/REG Number *</p>
-		<input type="text" name="vatregnumber" required/>
-		<p>Name *</p>
-		<input type="text" name="name" required/>
-		<p>Country *</p>
-		<select name="country" required>
-		  <option value="Spain">Spain</option>
-		  <option value="England">England</option>
-		  <option value="EEUU">EEUU</option>
-		  <option value="France">France</option>
-		</select>
-		<p>Industry</p>
-		<select name="industry">
-		  <option value="Logistic">Logistic</option>
-		  <option value="Services">Services</option>
-		</select>
+	<div id="header">
+		<div id="headline">
+			<div
+				style="background-color: #00E098; width: 20px; height: 3px; margin: 0% 0% 5% 0%;">&nbsp;</div>
 
-		<input type="submit" value="Enviar" />
-	</form>
-	
-	<a href="/"> Atrás </a>
+			<table style="width: 100%;">
+				<tbody>
+					<tr>
+						<td><span class="title">Benefit Netsuite calculator</span></td>
+					</tr>
+					<tr>
+						<td>
+							<p class="subtitle">Fill out this form in a few steps to know
+								the time of implementation of Netsuite in your business</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div
+				style="background-color: #00E098; width: 20px; height: 3px; margin: 5% 0% 0% 0%;">&nbsp;</div>
+		</div>
+
+		<div id="headlogo">
+			<img alt="a_acevedo_verde" data-entity-type="file"
+				src="/images/a_acevedo_green.png" class="align-center">
+		</div>
+	</div>
+
+	<!--
+	<div>
+		<h1>{{customer.name}}&nbsp;{{customer.lastname}}</h1>
+		<h2>Email: {{customer.email}}</h2>
+		<h2>ID: {{customer.id}}</h2>
+		{{#customer.company}}
+		<h2>
+			<a href="/customer/{{customer.id}}/company"> Company</a>:
+			{{customer.company.name}}
+		</h2>
+		{{/customer.company}}
+	</div>
+	 -->
+
+	<div class="grid-container x-center-content">
+
+		<div class="form-card">
+			<form action="/customer/{{customer.id}}/company" method="post">
+				<h2 class="fs-title">Company Information</h2>
+				<input type="text" name="vatregnumber" placeholder="Vat Reg Number" required /> 
+				<input type="text" name="name" placeholder="Company name" required />
+
+				<div style="display: flex;">
+					<div style="width: 50%">
+						<p>Country:</p>
+						<select name="country" required>
+							<option value="Spain">Spain</option>
+							<option value="England">England</option>
+							<option value="EEUU">EEUU</option>
+							<option value="France">France</option>
+						</select>
+					</div>
+					<div style="width: 50%">
+						<p>Industry:</p>
+						<select name="industry" required>
+							<option value="Logistic">Logistic</option>
+							<option value="Services">Services</option>
+						</select>
+					</div>
+				</div>
+
+				<div>
+					<input type="submit" class="next action-button" value="Next" />
+				</div>
+			</form>
+		</div>
+
+		<div style="margin: 0 auto;">
+			<img src="/images/oracle_netsuite_logo.png" alt="oracle logo" class="align-center">
+		</div>
+
+		<div style="margin: 5% auto;"><a href="/customer/new">Go Back</a></div>
+
+	</div>
 
 </body>
 </html>

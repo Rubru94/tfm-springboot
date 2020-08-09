@@ -163,15 +163,15 @@ form .action-button:hover, form .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
 }
 
-select.list-dt {
+select {
 	border: none;
 	outline: 0;
 	border-bottom: 1px solid #ccc;
 	padding: 2px 5px 3px 5px;
-	margin: 2px
+	margin: 10px
 }
 
-select.list-dt:focus {
+select:focus {
 	border-bottom: 2px solid skyblue
 }
 
