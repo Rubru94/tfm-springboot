@@ -1,18 +1,54 @@
+<!DOCTYPE html>
+
 <html>
+
+<head>
+<link rel="stylesheet" href="/css/newCustomer.css">
+</head>
+
 <body>
-	<h1>New Customer</h1>
-	<form action="/customer" method="post">
-		<p>Name</p>
-		<input type="text" name="name" />
-		<p>Lastname</p>
-		<input type="text" name="lastname" />
-		<p>Email</p>
-		<input type="email" name="email" />
-		<div>
-			<input type="submit" value="Enviar" />
+
+	<div id="header">
+		<div id="headline">
+			<div style="background-color: #00E098; width: 20px;height: 3px; margin: 0% 0% 5% 0%;">&nbsp;</div>
+
+				<table style="width: 100%;">
+					<tbody>
+						<tr>
+							<td><span class="title">Benefit Netsuite calculator</span></td>
+						</tr>
+						<tr>
+							<td>
+							<p class="subtitle">Fill out this form in a few steps to know the time of implementation of Netsuite in your business</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			<div style="background-color: #00E098; width: 20px;height: 3px; margin: 5% 0% 0% 0%;">&nbsp;</div>
 		</div>
-	</form>
-	<hr>
-	<a href="/"> Cancelar </a>
+
+		<div id="headlogo"><img alt="a_acevedo_verde" data-entity-type="file" src="/images/a_acevedo_green.png" class="align-center"></div>
+	</div>
+
+	<div class="grid-container x-center-content">
+				
+		<div class="form-card">
+			<form action="/customer" method="post">
+				<h2 class="fs-title">Customer Information</h2>
+				<input type="text" name="name" placeholder="Name"/>
+				<input type="text" name="lastname" placeholder="Lastname" />
+				<input type="email" name="email" placeholder="Email" />
+				<div>
+					<input type="submit" class="next action-button" value="Next" />
+				</div>
+			</form>
+		</div> 
+		
+		<div style="margin: 0 auto;"><img src="/images/oracle_netsuite_logo.png" alt="oracle logo" class="align-center"></div>
+		
+	</div>
+
 </body>
+
 </html>

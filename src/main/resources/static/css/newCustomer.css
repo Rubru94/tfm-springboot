@@ -1,0 +1,235 @@
+@font-face {
+	font-family: AvenirNext;
+	src: url(/fonts/AvenirNextLTPro-Regular.woff);
+}
+
+* {
+	margin: 0;
+	padding: 0
+}
+
+html {
+	height: 100%
+}
+
+body {
+	font-family: AvenirNext;
+}
+
+#header {
+	display: block;
+	position: relative;
+	background-color: #272727;
+	width: auto;
+	height: 632px;
+	background-image: url("/images/header_background.png");
+	background-size: cover;
+}
+
+#headline {
+	position: absolute;
+	left: 55%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#headlogo {
+	position: absolute;
+	left: -5em;
+	top: 25em;
+}
+
+#headlogo img {
+	height: 220px;
+}
+
+.title {
+	color: #00E098;
+	font-family: AvenirNext;
+	font-size: 3.5em;
+	letter-spacing: 1.6px;
+	opacity: 1;
+}
+
+.subtitle {
+	color: #FDFFFE;
+	font-family: AvenirNext;
+	font-size: 1.5em;
+	opacity: 1;
+}
+
+@media ( max-width :1170px) {
+	.title {
+		color: #00E098;
+		font-family: AvenirNext;
+		font-size: 2.5em;
+		letter-spacing: 1.6px;
+		opacity: 1;
+	}
+	.subtitle {
+		color: #FDFFFE;
+		font-family: AvenirNext;
+		font-size: 1em;
+		opacity: 1;
+	}
+	#headline {
+		position: absolute;
+		top: 33%;
+		transform: translate(-50%, -50%);
+	}
+	#headlogo img {
+		height: 180px;
+	}
+}
+
+.x-center-content {
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-container-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.grid-container {
+	display: grid;
+}
+
+#grad1 {
+	background-color: #00E098;
+	background-image: linear-gradient(-120deg, #00E098, #000000);
+}
+
+form {
+	text-align: center;
+	position: relative;
+	margin-top: 20px
+}
+
+.form-card {
+	background: white;
+	border: 0 none;
+	border-radius: 0px;
+	box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+	padding: 20px 40px 30px 40px;
+	box-sizing: border-box;
+	width: 94%;
+	margin: 10% auto 0% auto;
+	position: relative
+}
+
+form input, form textarea {
+	padding: 0px 8px 4px 8px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	border-radius: 0px;
+	margin-bottom: 25px;
+	margin-top: 2px;
+	width: 100%;
+	box-sizing: border-box;
+	color: #2C3E50;
+	font-size: 16px;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+
+form input:focus, form textarea:focus {
+	
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	border: none;
+	font-weight: bold;
+	border-bottom: 2px solid #00E098;
+	outline-width: 0
+
+}
+
+form .action-button {
+	width: 100px;
+	background: #00E098;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 0px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+	font-family: AvenirNext;
+}
+
+form .action-button:hover, form .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
+}
+
+select.list-dt {
+	border: none;
+	outline: 0;
+	border-bottom: 1px solid #ccc;
+	padding: 2px 5px 3px 5px;
+	margin: 2px
+}
+
+select.list-dt:focus {
+	border-bottom: 2px solid skyblue
+}
+
+.card {
+	z-index: 0;
+	border: none;
+	border-radius: 0.5rem;
+	position: relative
+}
+
+.fs-title {
+	font-size: 25px;
+	color: #2C3E50;
+	margin-bottom: 30px;
+	font-weight: bold;
+	text-align: left
+}
+
+.radio-group {
+	position: relative;
+	margin-bottom: 25px
+}
+
+.radio {
+	display: inline-block;
+	width: 204;
+	height: 104;
+	border-radius: 0;
+	background: lightblue;
+	box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	cursor: pointer;
+	margin: 8px 2px
+}
+
+.radio:hover {
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+}
+
+.radio.selected {
+	box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
+}
+
+.fit-image {
+	width: 100%;
+	object-fit: cover
+}
+
+.section-green-label {
+	color: #00E098;
+	font-size: 1.5em;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.section-white-label {
+	font-size: 1.5em;
+	letter-spacing: 0.6px;
+	color: white;
+}
