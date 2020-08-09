@@ -72,7 +72,7 @@ public class ApiRestController {
 		// Initial example data load
 
 		for (Product p : PRODUCTS) {
-
+			
 			if (this.productService.getProductByCode(p.getCode()) == null) {
 
 				this.productService.addProduct(p);
@@ -91,13 +91,16 @@ public class ApiRestController {
 
 		Product product = new Product("INVENTORY", "Gestion de Inventario", "Producto Gestion de Inventario", 15);
 		this.productService.addProduct(product);
+		
+
+		//Product product = PRODUCTS.get(PRODUCTS.size() - 1);
 
 		Budget budget = new Budget(new Date(), c1);
 		this.budgetService.addBudget(budget);
 
 		BudgetProduct budgetProduct = new BudgetProduct(budget, product, new Date());
 		this.budgetProductService.addBudgetProduct(budgetProduct);
-
+		
 		budget.addProduct(budgetProduct);
 		this.productService.addProduct(product);
 		product.addBudget(budgetProduct);
