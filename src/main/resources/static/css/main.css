@@ -135,8 +135,12 @@ form p {
 	margin: auto;
 }
 
+.form-card span {
+	text-decoration: underline;
+	text-decoration-color: #00E098;
+}
+
 form input:focus, form textarea:focus {
-	
 	-moz-box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
@@ -144,10 +148,9 @@ form input:focus, form textarea:focus {
 	font-weight: bold;
 	border-bottom: 2px solid #00E098;
 	outline-width: 0
-
 }
 
-form .action-button {
+.action-button {
 	width: 100px;
 	background: #00E098;
 	font-weight: bold;
