@@ -1,14 +1,80 @@
+<!DOCTYPE html>
+
 <html>
+
+<head>
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
 <body>
 
-	<h1>Budget</h1>
-	<h2>Customer: {{customer.name}}</h2>
-	<h2>Date: {{lastBudget.date}}</h2>
-	<h2>Total implantation hours: {{lastBudget.total}}</h2>
+	<div id="header">
+		<div id="headline">
+			<div
+				style="background-color: #00E098; width: 20px; height: 3px; margin: 0% 0% 5% 0%;">&nbsp;</div>
 
-	<hr>
-	
-	<a href="/"> Atrás </a>
+			<table style="width: 100%;">
+				<tbody>
+					<tr>
+						<td><span class="title">Benefit Netsuite calculator</span></td>
+					</tr>
+					<tr>
+						<td>
+							<p class="subtitle">Fill out this form in a few steps to know
+								the time of implementation of Netsuite in your business</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div
+				style="background-color: #00E098; width: 20px; height: 3px; margin: 5% 0% 0% 0%;">&nbsp;</div>
+		</div>
+
+		<div id="headlogo">
+			<img alt="a_acevedo_verde" data-entity-type="file"
+				src="/images/a_acevedo_green.png" class="align-center">
+		</div>
+	</div>
+
+
+	<div class="grid-container x-center-content">
+
+		<br>
+		<h1>Your budget has been registered correctly.</h1>
+
+		<div class="form-card">
+			<h2>
+				<span>Name:</span> {{customer.name}} {{customer.lastname}}
+			</h2>
+			<h2>
+				<span>Date:</span> {{lastBudget.date}}
+			</h2>
+			<h2>
+				<span>Company:</span> {{customer.company.name}}
+			</h2>
+			<h2>
+				<span>Industry:</span> {{customer.company.industry}}
+			</h2>
+			<h2>
+				<span>Country:</span> {{customer.company.country}}
+			</h2>
+			<h2 style="text-align: center; font-size: 40px;">
+				<span>Total implantation hours:</span> {{lastBudget.total}}
+			</h2>
+		</div>
+
+		<div style="margin: 0 auto;">
+			<img src="/images/oracle_netsuite_logo.png" alt="oracle logo"
+				class="align-center">
+		</div>
+
+	</div>
+
+	<div style="margin: 0% auto 5% auto; text-align: center;">
+		<a class="action-button" href="/customer/new">New Budget</a>
+	</div>
 
 </body>
+
 </html>
