@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,13 @@ import tfm.springboot.service.ProductService;
 
 @RestController
 public class ApiRestController {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+	    this.sessionFactory = sessionFactory;
+	}
 
 	@Autowired
 	private CustomerService customerService;
