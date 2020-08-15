@@ -13,13 +13,13 @@ import tfm.springboot.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
-	
+
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	public FullCustomerDTO convertToFullCustomerDTO(Customer customer) {
 		return modelMapper.map(customer, FullCustomerDTO.class);
 	}
@@ -27,13 +27,13 @@ public class CustomerService {
 	public Customer convertFullCustomerDtoToEntity(FullCustomerDTO customer) {
 		return modelMapper.map(customer, Customer.class);
 	}
-	
+
 	public List<Customer> getAllCustomers() {
 		return customerRepository.findAll();
 	}
 
 	public Customer getCustomer(long id) {
-		
+
 		Optional<Customer> op = customerRepository.findById(id);
 		if (op.isPresent()) {
 			Customer customer = op.get();
@@ -46,10 +46,12 @@ public class CustomerService {
 		customerRepository.save(customer);
 		return customer;
 	}
-	
+
 	public FullCustomerDTO getFullCustomerDTO(long id) {
-		Customer customer = customerRepository.findById(id).get();
-		if (customer != null) {
+
+		Optional<Customer> op = customerRepository.findById(id);
+		if (op.isPresent()) {
+			Customer customer = op.get();
 			return convertToFullCustomerDTO(customer);
 		}
 		return null;

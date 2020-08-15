@@ -28,7 +28,7 @@ public class ProductService {
 	public Product convertFullProductDtoToEntity(FullProductDTO product) {
 		return modelMapper.map(product, Product.class);
 	}
-	
+
 	public BasicProductDTO convertToBasicProductDTO(Product product) {
 		return modelMapper.map(product, BasicProductDTO.class);
 	}
@@ -50,7 +50,7 @@ public class ProductService {
 		}
 		return null;
 	}
-	
+
 	public Product getProductByCode(String code) {
 
 		Optional<Product> op = productRepository.findByCode(code);
@@ -67,16 +67,20 @@ public class ProductService {
 	}
 
 	public FullProductDTO getFullProductDTO(long id) {
-		Product product = productRepository.findById(id).get();
-		if (product != null) {
+
+		Optional<Product> op = productRepository.findById(id);
+		if (op.isPresent()) {
+			Product product = op.get();
 			return convertToFullProductDTO(product);
 		}
 		return null;
 	}
-	
+
 	public BasicProductDTO getBasicProductDTO(long id) {
-		Product product = productRepository.findById(id).get();
-		if (product != null) {
+
+		Optional<Product> op = productRepository.findById(id);
+		if (op.isPresent()) {
+			Product product = op.get();
 			return convertToBasicProductDTO(product);
 		}
 		return null;

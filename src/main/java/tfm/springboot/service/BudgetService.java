@@ -57,8 +57,10 @@ public class BudgetService {
 	}
 
 	public FullBudgetDTO getFullBudgetDTO(long id) {
-		Budget budget = budgetRepository.findById(id).get();
-		if (budget != null) {
+		
+		Optional<Budget> op = budgetRepository.findById(id);
+		if (op.isPresent()) {
+			Budget budget = op.get();
 			return convertToFullBudgetDTO(budget);
 		}
 		return null;

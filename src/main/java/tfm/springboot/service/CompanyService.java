@@ -67,16 +67,20 @@ public class CompanyService {
 	}
 
 	public FullCompanyDTO getFullCompanyDTO(long id) {
-		Company company = companyRepository.findById(id).get();
-		if (company != null) {
+
+		Optional<Company> co = companyRepository.findById(id);
+		if (co.isPresent()) {
+			Company company = co.get();
 			return convertToFullCompanyDTO(company);
 		}
 		return null;
 	}
 
 	public BasicCompanyDTO getBasicCompanyDTO(long id) {
-		Company company = companyRepository.findById(id).get();
-		if (company != null) {
+
+		Optional<Company> co = companyRepository.findById(id);
+		if (co.isPresent()) {
+			Company company = co.get();
 			return convertToBasicCompanyDTO(company);
 		}
 		return null;
