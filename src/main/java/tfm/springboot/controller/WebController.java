@@ -102,7 +102,6 @@ public class WebController {
 		customer.setCompany(com);
 		this.customerService.addCustomer(customer);
 
-		// return "company";
 		return "redirect:/customer/" + customer.getId() + "/products";
 	}
 

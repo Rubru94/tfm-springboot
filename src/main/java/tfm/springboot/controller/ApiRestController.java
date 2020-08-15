@@ -69,8 +69,6 @@ public class ApiRestController {
 	@PostConstruct
 	public void init() {
 
-		// Initial example data load
-
 		for (Product p : PRODUCTS) {
 			
 			if (this.productService.getProductByCode(p.getCode()) == null) {
@@ -78,34 +76,6 @@ public class ApiRestController {
 				this.productService.addProduct(p);
 			}
 		}
-
-		Company co1 = new Company("B15248631", "IBM", "Spain");
-		companyService.addCompany(co1);
-		Customer c1 = new Customer("Alfredo", "Perez", "alpe@gmail.com");
-		c1.setCompany(co1);
-		this.customerService.addCustomer(c1);
-		Customer c2 = new Customer("Gumersindo", "Azcarate", "guaz@gmail.com");
-		customerService.addCustomer(c2);
-
-		// BUDGETS & PRODUCTS
-
-		Product product = new Product("INVENTORY", "Gestion de Inventario", "Producto Gestion de Inventario", 15);
-		this.productService.addProduct(product);
-		
-
-		//Product product = PRODUCTS.get(PRODUCTS.size() - 1);
-
-		Budget budget = new Budget(new Date(), c1);
-		this.budgetService.addBudget(budget);
-
-		BudgetProduct budgetProduct = new BudgetProduct(budget, product, new Date());
-		this.budgetProductService.addBudgetProduct(budgetProduct);
-		
-		budget.addProduct(budgetProduct);
-		this.productService.addProduct(product);
-		product.addBudget(budgetProduct);
-		this.budgetService.addBudget(budget);
-
 	}
 
 	@GetMapping("/api/customers")
