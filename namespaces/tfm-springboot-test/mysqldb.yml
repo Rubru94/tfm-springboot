@@ -23,7 +23,7 @@ spec:
           value: password
         volumeMounts:
           - name: mysqldb-test-volume
-            mountPath: "/var/lib/mysql"            
+            mountPath: "/var/lib/mysqltest"            
       volumes:
         - name: mysqldb-test-volume
           persistentVolumeClaim:
@@ -38,7 +38,7 @@ metadata:
   namespace: tfm-springboot-test
 spec:
   ports:
-  - port: 3307
+  - port: 3306
   selector:
     app: mysqldb-test
   type: ClusterIP
@@ -72,4 +72,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/db/mysql"
+    path: "/db/mysqltest"

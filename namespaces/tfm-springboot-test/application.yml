@@ -23,9 +23,9 @@ spec:
         image: rubru94/tfm-springboot:0.0.4
         env:
         - name: SPRING_MYSQLDB_HOST
-          value: mysqldb
+          value: mysqldb-test
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://mysqldb:3307/test?serverTimezone=UTC
+          value: jdbc:mysql://mysqldb-test:3306/test?serverTimezone=UTC
         - name: SPRING_DATASOURCE_USERNAME
           value: root
         - name: SPRING_DATASOURCE_PASSWORD
@@ -40,9 +40,9 @@ metadata:
     app: application-test
 spec:
   ports:
-  - name: "8081"
-    port: 8081
-    targetPort: 8081
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
   selector:
     app: application-test
   type: LoadBalancer
