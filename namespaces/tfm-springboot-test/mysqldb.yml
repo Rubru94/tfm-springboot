@@ -38,7 +38,7 @@ metadata:
   namespace: tfm-springboot-test
 spec:
   ports:
-  - port: 3306
+  - port: 3307
   selector:
     app: mysqldb
   type: ClusterIP
