@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysqldb
+  name: mysqldb-test
   namespace: tfm-springboot-test
 spec:
   selector:
     matchLabels:
-      app: mysqldb
+      app: mysqldb-test
   template:
     metadata:
       labels:
-        app: mysqldb
+        app: mysqldb-test
     spec:
       containers:
-      - name: mysqldb
+      - name: mysqldb-test
         image: mysql:8
         env:
         - name: MYSQL_DATABASE
@@ -22,25 +22,25 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: password
         volumeMounts:
-          - name: mysqldb-volume 
+          - name: mysqldb-test-volume
             mountPath: "/var/lib/mysql"            
       volumes:
-        - name: mysqldb-volume
+        - name: mysqldb-test-volume
           persistentVolumeClaim:
-            claimName: pvc-mysqldb
+            claimName: pvc-mysqldb-test
                 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysqldb
+  name: mysqldb-test
   namespace: tfm-springboot-test
 spec:
   ports:
   - port: 3307
   selector:
-    app: mysqldb
+    app: mysqldb-test
   type: ClusterIP
   
 ---
@@ -48,10 +48,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-mysqldb
+  name: pvc-mysqldb-test
   namespace: tfm-springboot-test
 spec:
-  storageClassName: mysqldb
+  storageClassName: mysqldb-test
   accessModes:
     - ReadWriteOnce
   resources:
@@ -63,10 +63,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-mysqldb
+  name: pv-mysqldb-test
   namespace: tfm-springboot-test
 spec:
-  storageClassName: mysqldb
+  storageClassName: mysqldb-test
   capacity:
     storage: 10Gi
   accessModes:
