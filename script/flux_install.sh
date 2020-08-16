@@ -11,7 +11,7 @@ sudo helm upgrade flux fluxcd/flux --wait \
 --install \
 --namespace flux-system \
 --version=1.3.0 \
---set git.url=git@github.com:Rubru94/tfm-springboot \
+--set git.url=git@github.com:Rubru94/tfm-springboot.git \
 --set git.branch=master \
 --set git.path=namespaces \
 --set git.pollInterval=5m \
