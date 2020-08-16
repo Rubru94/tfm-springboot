@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-test
+  namespace: tfm-springboot-test
+spec:
+  selector:
+    matchLabels:
+      app: application-test
+  strategy:
+    type: RollingUpdate
+  replicas: 2 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: application-test
+    spec:
+      securityContext:
+        runAsUser: 1000
+      containers:
+      - name: application-test
+        image: rubru94/tfm-springboot:0.0.4
+        env:
+        - name: SPRING_MYSQLDB_HOST
+          value: mysqldb
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysqldb:3306/test?serverTimezone=UTC
+        - name: SPRING_DATASOURCE_USERNAME
+          value: root
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: application-test
+  namespace: tfm-springboot-test
+  labels:
+    app: application-test
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: application-test
+  type: LoadBalancer
+  
+  

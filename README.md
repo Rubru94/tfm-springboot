@@ -139,9 +139,13 @@ Actualmente disponemos de los siguientes *namespaces*:
 
 - **flux-system**: Donde situaremos los pods y servicios que se habilitan con la instalación de [*flux*](script/flux_install.sh) (incluido *helm-operator*). 
 
-- **tfm-springboot**: Donde se despliega la aplicación y la base de datos *mysql* asociada. En las *annotations* del *deployment* del fichero [**application.yml**](namespaces/tfm-springboot/application.yml), indicaremos la configuración de *flux* relativa a la actualización automática de las imágenes de la aplicación. 
+- **tfm-springboot**: Donde se despliega la aplicación y la base de datos *mysql* asociada en entorno de **PRODUCCIÓN**. En las *annotations* del *deployment* del fichero [**application.yml**](namespaces/tfm-springboot/application.yml), indicaremos la configuración de *flux* relativa a la actualización automática de las imágenes de la aplicación. 
 
-Esta configuración automática es más propia de entornos de **PRODUCCIÓN**, de manera que posteriormente se dispondrá de un namespace para entorno de **TEST** y uno para entorno de **PROD**
+- **tfm-springboot-test**: Donde se despliega la aplicación y la base de datos *mysql* asociada en entorno de **TEST**. Las imágenes de la aplicación las actualizaremos de forma manual mediante la instrucción:
+
+```
+sudo fluxctl release --workload=deployment/application-test –update-image=rubru94/tfm-springboot:0.0.X
+```
 
 ***
 
