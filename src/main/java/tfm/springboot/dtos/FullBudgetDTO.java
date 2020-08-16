@@ -1,4 +1,4 @@
-package tfm.springboot.DTOs;
+package tfm.springboot.dtos;
 
 import java.util.ArrayList;
 import java.util.Date;

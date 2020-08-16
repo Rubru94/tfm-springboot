@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tfm.springboot.DTOs.BasicCompanyDTO;
-import tfm.springboot.DTOs.FullBudgetDTO;
-import tfm.springboot.DTOs.FullCompanyDTO;
-import tfm.springboot.DTOs.FullCustomerDTO;
-import tfm.springboot.DTOs.FullProductDTO;
+import tfm.springboot.dtos.BasicCompanyDTO;
+import tfm.springboot.dtos.FullBudgetDTO;
+import tfm.springboot.dtos.FullCompanyDTO;
+import tfm.springboot.dtos.FullCustomerDTO;
+import tfm.springboot.dtos.FullProductDTO;
 import tfm.springboot.model.Budget;
 import tfm.springboot.model.BudgetProduct;
 import tfm.springboot.model.Company;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import tfm.springboot.DTOs.FullCompanyDTO;
+import tfm.springboot.dtos.FullCompanyDTO;
 import tfm.springboot.model.Budget;
 import tfm.springboot.model.BudgetProduct;
 import tfm.springboot.model.Company;

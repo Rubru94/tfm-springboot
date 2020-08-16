@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tfm.springboot.DTOs.FullCustomerDTO;
+import tfm.springboot.dtos.FullCustomerDTO;
 import tfm.springboot.model.Customer;
 import tfm.springboot.repository.CustomerRepository;
 

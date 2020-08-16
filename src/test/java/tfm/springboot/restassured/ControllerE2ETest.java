@@ -18,10 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import tfm.springboot.DTOs.BasicBudgetDTO;
-import tfm.springboot.DTOs.ForBudgetBudgetProductDTO;
-import tfm.springboot.DTOs.FullBudgetDTO;
-import tfm.springboot.DTOs.FullCustomerDTO;
+import tfm.springboot.dtos.BasicBudgetDTO;
+import tfm.springboot.dtos.ForBudgetBudgetProductDTO;
+import tfm.springboot.dtos.FullBudgetDTO;
+import tfm.springboot.dtos.FullCustomerDTO;
 import tfm.springboot.model.Budget;
 import tfm.springboot.model.BudgetProduct;
 import tfm.springboot.model.Company;

@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tfm.springboot.DTOs.BasicBudgetDTO;
-import tfm.springboot.DTOs.FullBudgetDTO;
+import tfm.springboot.dtos.BasicBudgetDTO;
+import tfm.springboot.dtos.FullBudgetDTO;
 import tfm.springboot.model.Budget;
 import tfm.springboot.repository.BudgetRepository;
 

@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tfm.springboot.DTOs.BasicCompanyDTO;
-import tfm.springboot.DTOs.FullCompanyDTO;
+import tfm.springboot.dtos.BasicCompanyDTO;
+import tfm.springboot.dtos.FullCompanyDTO;
 import tfm.springboot.model.Company;
 import tfm.springboot.repository.CompanyRepository;
 

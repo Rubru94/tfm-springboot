@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tfm.springboot.DTOs.BasicProductDTO;
-import tfm.springboot.DTOs.FullProductDTO;
+import tfm.springboot.dtos.BasicProductDTO;
+import tfm.springboot.dtos.FullProductDTO;
 import tfm.springboot.model.Product;
 import tfm.springboot.repository.ProductRepository;
 
