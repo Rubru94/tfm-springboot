@@ -117,7 +117,7 @@ public class ApiRestController {
 	}
 
 	@PostMapping("/api/customer/{id}/company")
-	public ResponseEntity<BasicCompanyDTO> setCustomerCompany(@PathVariable long id, @RequestBody Company company) {
+	public ResponseEntity<BasicCompanyDTO> setCustomerCompany(@PathVariable long id, @RequestBody FullCompanyDTO company) {
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

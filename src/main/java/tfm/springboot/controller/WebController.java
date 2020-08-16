@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import tfm.springboot.DTOs.FullCompanyDTO;
 import tfm.springboot.model.Budget;
 import tfm.springboot.model.BudgetProduct;
 import tfm.springboot.model.Company;
@@ -68,7 +69,7 @@ public class WebController {
 	}
 
 	@GetMapping("/customer/{id}/company")
-	public String showCompany(@PathVariable long id, Model model, Company company) {
+	public String showCompany(@PathVariable long id, Model model, FullCompanyDTO company) {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
@@ -81,7 +82,7 @@ public class WebController {
 	}
 
 	@PostMapping("/customer/{id}/company")
-	public String setCompany(HttpSession session, @PathVariable long id, Model model, Company company) {
+	public String setCompany(HttpSession session, @PathVariable long id, Model model, FullCompanyDTO company) {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
