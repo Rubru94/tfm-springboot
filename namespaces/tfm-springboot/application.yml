@@ -13,7 +13,7 @@ spec:
       app: application
   strategy:
     type: RollingUpdate
-  replicas: 2 # tells deployment to run 1 pods matching the template
+  replicas: 2 # tells deployment to run 2 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
       labels:
