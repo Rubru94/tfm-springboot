@@ -23,7 +23,7 @@ spec:
           value: password
         volumeMounts:
           - name: mysqldb-test-volume
-            mountPath: "/var/lib/mysqltest"            
+            mountPath: "/var/lib/mysql"            
       volumes:
         - name: mysqldb-test-volume
           persistentVolumeClaim:
