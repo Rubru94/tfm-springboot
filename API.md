@@ -554,18 +554,12 @@ _Añade un nuevo presupuesto a un cliente_
 		"products": [
 			{
 				"product": {
-					"code": "AF",
-					"name": "Advanced Finance",
-					"description": "Oriented towards companies that require recurring billing to their clients",
-					"expenseHours": 30
+					"code": "AF"
 				}
 			},
 			{
 				"product": {
-					"code": "AP",
-					"name": "Advanced Purchases",
-					"description": "The Advanced Purchases module will help you keep track of your purchases by relating the authorized price lists to the contracts you have assets",
-					"expenseHours": 40
+					"code": "AP"
 				}
 			}
 		]
