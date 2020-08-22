@@ -1,6 +1,6 @@
 # API REST - TFM-SPRINGBOOT
 
-### [Go to README.md](README.md)
+### [Go back](../)
 
 ## GET ALL CUSTOMERS
 
@@ -611,4 +611,4 @@ _Añade un nuevo presupuesto a un cliente_
 	```
 
 
-### [Go to README.md](README.md)
+### [Go back](../)
