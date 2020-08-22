@@ -27,11 +27,9 @@ sudo apt-get install -y conntrack
 
 # Running Minikube on EC2 Ubuntu
 
-sudo -i
+sudo -i minikube start --vm-driver=none
 
-minikube start --vm-driver=none
-
-minikube status
+sudo -i minikube status
 
 # HELM installation 
 
