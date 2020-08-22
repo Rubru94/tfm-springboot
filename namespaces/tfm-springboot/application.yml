@@ -23,7 +23,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: application
-        image: rubru94/tfm-springboot:0.0.4
+        image: rubru94/tfm-springboot:0.0.5
         env:
         - name: SPRING_MYSQLDB_HOST
           value: mysqldb
@@ -49,5 +49,5 @@ spec:
   selector:
     app: application
   type: LoadBalancer
-  
-  
+
+
