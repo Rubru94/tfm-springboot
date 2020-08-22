@@ -1,5 +1,7 @@
 # TFM - Springboot 
 
+## [API REST](API.md)
+
 ## CI - GitHub Actions
 
 La integración continua se lleva a cabo empleando **GitHub Actions**, definiendo unos [workflows](.github/workflows) diferenciados según el evento de interacción con el repositorio:
