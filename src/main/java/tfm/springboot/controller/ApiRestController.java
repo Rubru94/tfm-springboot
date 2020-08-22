@@ -150,14 +150,16 @@ public class ApiRestController {
 		Budget bud = new Budget(budget.getDate(), customer);
 
 		for (BudgetProduct budgetProduct : budget.getProducts()) {
+			
+			if (this.productService.getProductByCode(budgetProduct.getProduct().getCode()) != null) {			
+				
+				BudgetProduct bp = new BudgetProduct(bud, this.productService.getProductByCode(budgetProduct.getProduct().getCode()), new Date());
+				this.budgetProductService.addBudgetProduct(bp);
 
-			BudgetProduct bp = new BudgetProduct(bud, budgetProduct.getProduct(), new Date());
-			this.budgetProductService.addBudgetProduct(bp);
-
-			bud.addProduct(bp);
-			this.productService.addProduct(budgetProduct.getProduct());
-			budgetProduct.getProduct().addBudget(bp);
-			this.budgetService.addBudget(bud);
+				bud.addProduct(bp);
+				budgetProduct.getProduct().addBudget(bp);
+				this.budgetService.addBudget(bud);
+			}
 		}
 
 		customer.addBudget(bud);

@@ -111,8 +111,8 @@ public class ControllerIntegrationTest {
 
 		Customer customer = new Customer("Mike", "Wazowski", "miwa@monsters.com");
 
-		Product p1 = new Product("INVENTORY", "Inventory management", "Inventory management product", 15);
-		Product p2 = new Product("ECOMMERCE", "Electronic commerce", "Electronic commerce product", 30);
+		Product p1 = new Product("AF", "Advanced Finance", "Advanced Finance", 30);
+		Product p2 = new Product("AP", "Advanced Purchases", "Advanced Purchases", 40);
 
 		List<Product> products = new ArrayList<>();
 		products.add(p1);
