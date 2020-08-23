@@ -1,6 +1,10 @@
 # TFM - Springboot 
 
-## [API REST](API.md)
+## API DOC
+
+* ### [REST](API-REST.md)
+
+* ### [WEB](API-WEB.md)
 
 ## CI - GitHub Actions
 
