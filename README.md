@@ -68,7 +68,36 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
   ```
 
-- [**pullrequest.yml**](.github/workflows/pullrequest.yml): Se disparará por cada *merge* a *máster*, y contiene el siguiente job:
+  - ***Analyze code with SonarCloud***: Se analiza el código del repositorio mediante Sonarcloud empleando el artefacto construido en el job inicial.
+
+  ```
+  sonarcloud:
+  name: Analyze code with SonarCloud
+  runs-on: ubuntu-latest
+  needs: [build]
+  services:
+    mysql:
+      image: mysql:8
+      ports:
+        - 3306
+      env:
+        MYSQL_DATABASE: test
+        MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      options: --health-cmd="mysqladmin ping" --health-interval=25s --health-timeout=5s --health-retries=3
+  steps:
+  - uses: actions/checkout@v2
+  - name: Download target from previous job
+    uses: actions/download-artifact@v1
+    with:
+      name: target
+  - name: Analyze with SonarCloud
+    run: mvn -B -DskipTests verify sonar:sonar -Dsonar.projectKey=Rubru94_tfm-springboot -Dsonar.organization=rubru94 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  ```
+
+- [**pullrequest.yml**](.github/workflows/pullrequest.yml): Se disparará por cada *merge* a *máster* y de forma programada todos los días a las 00:00 AM, y contiene los siguientes jobs:
 
   - ***Build app with all test***: Se construye la aplicación pasando todos los test
 
@@ -104,6 +133,35 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
           run: mvn -B test
           env: 
             DB_PORT: ${{ job.services.mysql.ports[3306] }}
+  ```
+
+  - ***Analyze code with SonarCloud***: Se analiza el código del repositorio mediante Sonarcloud después de construir la aplicación y pasar todos los test.
+
+  ```
+  sonarcloud:
+    name: Analyze code with SonarCloud
+    runs-on: ubuntu-latest
+    needs: [all_test]
+    services:
+      mysql:
+        image: mysql:8
+        ports:
+          - 3306
+        env:
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        options: --health-cmd="mysqladmin ping" --health-interval=25s --health-timeout=5s --health-retries=3
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Analyze with SonarCloud
+      run: mvn -B -DskipTests verify sonar:sonar -Dsonar.projectKey=Rubru94_tfm-springboot -Dsonar.organization=rubru94 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   ```
 
 - [**release.yml**](.github/workflows/release.yml): Se disparará con la publicación de cada nueva release, y contiene el siguiente job:
