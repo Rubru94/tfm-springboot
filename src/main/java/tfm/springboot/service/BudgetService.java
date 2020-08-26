@@ -20,6 +20,9 @@ public class BudgetService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private EmailService emailService;
 
 	public FullBudgetDTO convertToFullBudgetDTO(Budget budget) {
 		return modelMapper.map(budget, FullBudgetDTO.class);
@@ -53,6 +56,11 @@ public class BudgetService {
 
 	public Budget addBudget(Budget budget) {
 		budgetRepository.save(budget);
+		
+		FullBudgetDTO fullBudgetDTO =  convertToFullBudgetDTO(budget);
+		emailService.sendMail(budget.getCustomer().getEmail(), 
+				"AcevedoApps New Budget", 
+				emailService.getTemplate(fullBudgetDTO));
 		return budget;
 	}
 
