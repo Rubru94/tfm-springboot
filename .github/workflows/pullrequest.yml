@@ -35,7 +35,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B clean package -DskipTests --file pom.xml
     - name: Pass all test
-      run: mvn -B test
+      run: mvn -B test -Dspring.mail.password=${{ secrets.SPRING_MAIL_PASSWORD }}
       env: 
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
         
