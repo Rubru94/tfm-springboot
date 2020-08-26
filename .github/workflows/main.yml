@@ -49,7 +49,7 @@ jobs:
         mysql database: 'test' 
         mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }}
     - name: Pass test
-      run: mvn test -Dtest=ControllerUnitTest  -Dspring-boot.run.arguments="--spring.mail.password=${{ secrets.SPRING_MAIL_PASSWORD }}"
+      run: mvn test -Dtest=ControllerUnitTest -Dspring.mail.password=${{ secrets.SPRING_MAIL_PASSWORD }}
       env: 
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
 
