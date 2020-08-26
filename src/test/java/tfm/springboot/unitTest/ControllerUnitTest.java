@@ -16,6 +16,7 @@ import tfm.springboot.model.Customer;
 import tfm.springboot.model.Product;
 import tfm.springboot.service.CompanyService;
 import tfm.springboot.service.CustomerService;
+import tfm.springboot.service.EmailService;
 
 @SpringBootTest
 public class ControllerUnitTest {
@@ -25,6 +26,9 @@ public class ControllerUnitTest {
 
 	@Autowired
 	private CompanyService companyService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Test
 	public void givenNewCustomerWhenAddToRepositoryThenNotError() throws Exception {
@@ -65,6 +69,12 @@ public class ControllerUnitTest {
 		customer.addBudget(budget);
 
 		assertEquals(customer.getBudgets().get(customer.getBudgets().size() - 1).getId(), budget.getId());
+	}
+	
+	@Test
+	public void testEmail(){
+		
+		emailService.sendMail("rubenru94@hotmail.com","Test subject","Test mail");
 	}
 
 }
