@@ -8,6 +8,8 @@ public class BasicCustomerDTO {
 	private String lastname;
 	private String email;
 	
+	private BasicCompanyDTO company;
+	
 	public BasicCustomerDTO() {
 
 	}
@@ -42,6 +44,14 @@ public class BasicCustomerDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public BasicCompanyDTO getCompany() {
+		return company;
+	}
+
+	public void setCompany(BasicCompanyDTO company) {
+		this.company = company;
 	}
 	
 }
