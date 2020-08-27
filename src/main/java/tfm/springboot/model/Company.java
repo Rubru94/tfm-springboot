@@ -88,16 +88,16 @@ public class Company {
 		return customers;
 	}
 
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+	
 	public void addCustomer(Customer customer) {
 		this.customers.add(customer);
 	}
 
 	public void removeCustomer(int position) {
 		this.customers.remove(position);
-	}
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
 	}
 
 	@Override

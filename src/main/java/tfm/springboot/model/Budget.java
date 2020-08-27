@@ -83,7 +83,7 @@ public class Budget {
 		this.total += product.getProduct().getExpenseHours();
 	}
 
-	public void removeCustomer(int position) {
+	public void removeProduct(int position) {
 		this.products.remove(position);
 	}
 

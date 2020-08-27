@@ -99,7 +99,7 @@ public class Customer {
 		this.budgets.add(budget);
 	}
 
-	public void removeCustomer(int position) {
+	public void removeBudget(int position) {
 		this.budgets.remove(position);
 	}
 
