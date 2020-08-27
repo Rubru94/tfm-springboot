@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import tfm.springboot.dtos.BasicBudgetDTO;
+import tfm.springboot.dtos.BasicCompanyDTO;
 import tfm.springboot.dtos.ForBudgetBudgetProductDTO;
 import tfm.springboot.dtos.FullBudgetDTO;
 import tfm.springboot.dtos.FullCustomerDTO;
@@ -32,6 +33,7 @@ import tfm.springboot.model.Customer;
 import tfm.springboot.model.Product;
 import tfm.springboot.service.BudgetProductService;
 import tfm.springboot.service.BudgetService;
+import tfm.springboot.service.CompanyService;
 import tfm.springboot.service.CustomerService;
 
 @SpringBootTest
@@ -46,6 +48,9 @@ public class ControllerIntegrationTest {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private CompanyService companyService;
 
 	@Autowired
 	private BudgetService budgetService;
@@ -60,6 +65,8 @@ public class ControllerIntegrationTest {
 		MvcResult result;
 
 		Customer customer = new Customer("TestName", "TestLastname", "test@mail.com");
+		
+		FullCustomerDTO fullCustomerDTO = this.customerService.convertToFullCustomerDTO(customer);
 
 		result = mvc
 				.perform(post("/api/customer").contentType(MediaType.APPLICATION_JSON)
@@ -67,10 +74,10 @@ public class ControllerIntegrationTest {
 				.andExpect(status().isCreated()).andReturn();
 
 		String contentAsString = result.getResponse().getContentAsString();
-		customer = objectMapper.readValue(contentAsString, Customer.class);
+		fullCustomerDTO = objectMapper.readValue(contentAsString, FullCustomerDTO.class);
 
-		mvc.perform(get("/api/customer/" + customer.getId()).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$.name", equalTo(customer.getName())));
+		mvc.perform(get("/api/customer/" + fullCustomerDTO.getId()).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.name", equalTo(fullCustomerDTO.getName())));
 	}
 
 	@Test
@@ -81,6 +88,9 @@ public class ControllerIntegrationTest {
 
 		Customer customer = new Customer("Mike", "Wazowski", "miwa@monsters.com");
 		Company company = new Company("B0854687", "Monsters Inc.", "Monstropolis", "Logistic");
+		
+		FullCustomerDTO fullCustomerDTO = this.customerService.convertToFullCustomerDTO(customer);
+		BasicCompanyDTO basicCompanyDTO = this.companyService.convertToBasicCompanyDTO(company);
 
 		result = mvc
 				.perform(post("/api/customer").contentType(MediaType.APPLICATION_JSON)
@@ -88,19 +98,19 @@ public class ControllerIntegrationTest {
 				.andExpect(status().isCreated()).andReturn();
 
 		String contentAsString = result.getResponse().getContentAsString();
-		customer = objectMapper.readValue(contentAsString, Customer.class);
+		fullCustomerDTO = objectMapper.readValue(contentAsString, FullCustomerDTO.class);
 
-		result = mvc.perform(post("/api/customer/" + customer.getId() + "/company")
+		result = mvc.perform(post("/api/customer/" + fullCustomerDTO.getId() + "/company")
 				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(company)))
 				.andExpect(status().isCreated()).andReturn();
 
 		contentAsString = result.getResponse().getContentAsString();
-		company = objectMapper.readValue(contentAsString, Company.class);
+		basicCompanyDTO = objectMapper.readValue(contentAsString, BasicCompanyDTO.class);
 
-		mvc.perform(get("/api/customer/" + customer.getId()).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/api/customer/" + fullCustomerDTO.getId()).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.company.vatregnumber", equalTo(company.getVatregnumber())))
-				.andExpect(jsonPath("$.company.name", equalTo(company.getName())));
+				.andExpect(jsonPath("$.company.vatregnumber", equalTo(basicCompanyDTO.getVatregnumber())))
+				.andExpect(jsonPath("$.company.name", equalTo(basicCompanyDTO.getName())));
 	}
 
 	@Test
@@ -110,6 +120,7 @@ public class ControllerIntegrationTest {
 		MvcResult result;
 
 		Customer customer = new Customer("Mike", "Wazowski", "miwa@monsters.com");
+		Company company = new Company("B0854687", "Monsters Inc.", "Monstropolis", "Logistic");
 
 		Product p1 = new Product("AF", "Advanced Finance", "Advanced Finance", 30);
 		Product p2 = new Product("AP", "Advanced Purchases", "Advanced Purchases", 40);
@@ -137,7 +148,7 @@ public class ControllerIntegrationTest {
 
 		FullCustomerDTO fullCustomerDTO = this.customerService.convertToFullCustomerDTO(customer);
 		fullCustomerDTO.addBudget(basicBudgetDTO);
-
+		
 		result = mvc
 				.perform(post("/api/customer").contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(customer)))
@@ -145,6 +156,10 @@ public class ControllerIntegrationTest {
 
 		String contentAsString = result.getResponse().getContentAsString();
 		fullCustomerDTO = objectMapper.readValue(contentAsString, FullCustomerDTO.class);
+		
+		result = mvc.perform(post("/api/customer/" + fullCustomerDTO.getId() + "/company")
+				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(company)))
+				.andExpect(status().isCreated()).andReturn();
 
 		result = mvc
 				.perform(post("/api/customer/" + fullCustomerDTO.getId() + "/budget")
