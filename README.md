@@ -208,7 +208,7 @@ Actualmente disponemos de los siguientes *namespaces*:
 - **tfm-springboot-test**: Donde se despliega la aplicación y la base de datos *mysql* asociada en entorno de **TEST**. Las imágenes de la aplicación las actualizaremos de forma manual mediante la instrucción:
 
 ```
-sudo fluxctl release --workload=deployment/application-test –update-image=rubru94/tfm-springboot:0.0.X
+sudo fluxctl release --workload=${NAMESPACE}:deployment/${APP_NAME} -n ${NAMESPACE} --k8s-fwd-ns ${NAMESPACE} --update-image=${DOCKER_IMAGE_NAME}:${VERSION}
 ```
 
 ***
