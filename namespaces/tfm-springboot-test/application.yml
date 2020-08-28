@@ -20,7 +20,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: application-test
-        image: rubru94/tfm-springboot:0.0.5
+        image: rubru94/tfm-springboot:0.0.7
         env:
         - name: SPRING_MYSQLDB_HOST
           value: mysqldb-test
@@ -30,6 +30,8 @@ spec:
           value: root
         - name: SPRING_DATASOURCE_PASSWORD
           value: password
+        - name: SPRING_MAIL_PASSWORD
+          value: ${{ secrets.SPRING_MAIL_PASSWORD }}
 ---
 apiVersion: v1
 kind: Service
