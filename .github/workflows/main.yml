@@ -73,11 +73,7 @@ jobs:
       with:
         name: target
     - name: Analyze with SonarCloud
-      run: mvn -B -DskipTests verify sonar:sonar \
-      -Dsonar.projectKey=Rubru94_tfm-springboot \
-      -Dsonar.organization=rubru94 \
-      -Dsonar.host.url=https://sonarcloud.io \
-      -Dsonar.login=$SONAR_TOKEN > > > > 
+      run: mvn -B -DskipTests verify sonar:sonar -Dsonar.projectKey=Rubru94_tfm-springboot -Dsonar.organization=rubru94 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN > > > > 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
