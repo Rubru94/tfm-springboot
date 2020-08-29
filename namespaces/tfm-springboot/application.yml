@@ -23,7 +23,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: application
-        image: rubru94/tfm-springboot:0.0.6
+        image: rubru94/tfm-springboot:0.0.7
         env:
         - name: SPRING_MYSQLDB_HOST
           value: mysqldb
@@ -38,7 +38,6 @@ spec:
             secretKeyRef:
               name: mailsecret
               key: password
-
 ---
 apiVersion: v1
 kind: Service
