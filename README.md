@@ -1,6 +1,6 @@
 # TFM - Springboot 
 
-Web application created by Acevedoapps that allows you to quickly and easily calculate a budget for the implementation of Oracle Netsuite in your business.
+Web application created by Acevedoapps that allows you to calculate a budget for the implementation of Oracle Netsuite in your business quickly and easily
 
 ![acevedo.png](images/logos/acevedo.png) ![oracleNetsuite.png](images/logos/oracleNetsuite.png)
 
