@@ -8,11 +8,11 @@
 
 ## CI - GitHub Actions
 
-La integración continua se lleva a cabo empleando **GitHub Actions**, definiendo unos [workflows](.github/workflows) diferenciados según el evento de interacción con el repositorio:
+Continuous integration is carried out using **GitHub Actions**, defining some [workflows](.github/workflows) differentiated according to the interaction event with the repository:
 
-- [**main.yml**](.github/workflows/main.yml): Se disparará por cada *push* a *máster*, y contiene los siguientes jobs:
+- [**main.yml**](.github/workflows/main.yml): It will be triggered for each *push* to *master*, and contains the following jobs:
 
-  - ***Build app without test***: Construye la aplicación sin pasar test y almacena el binario como artefacto.
+  - ***Build app without test***: Build the application without passing tests and store the binary as an artifact.
 
   ```
   build:
@@ -33,7 +33,7 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
         path: target
   ```
 
-  - ***Pass unit tests***: Se pasan test unitarios empleando el artefacto construido en el job anterior.
+  - ***Pass unit tests***: Unit tests are passed using the artifact built in the previous job.
 
   ```
   unit_test:
@@ -68,7 +68,7 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
   ```
 
-  - ***Analyze code with SonarCloud***: Se analiza el código del repositorio mediante Sonarcloud empleando el artefacto construido en el job inicial.
+  - ***Analyze code with SonarCloud***: The repository code is analyzed using *Sonarcloud* with the artifact built in the initial job.
 
   ```
   sonarcloud:
@@ -97,9 +97,9 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   ```
 
-- [**pullrequest.yml**](.github/workflows/pullrequest.yml): Se disparará por cada *merge* a *máster* y de forma programada todos los días a las 00:00 AM, y contiene los siguientes jobs:
+- [**pullrequest.yml**](.github/workflows/pullrequest.yml): It will be triggered for each *merge* to *master* & every day at 00:00 AM on a scheduled basis, and contains the following jobs:
 
-  - ***Build app with all test***: Se construye la aplicación pasando todos los test
+  - ***Build app with all test***: The application is built passing all the tests
 
   ```
   all_test:
@@ -135,7 +135,7 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
             DB_PORT: ${{ job.services.mysql.ports[3306] }}
   ```
 
-  - ***Analyze code with SonarCloud***: Se analiza el código del repositorio mediante Sonarcloud después de construir la aplicación y pasar todos los test.
+  - ***Analyze code with SonarCloud***: The repository code is analyzed by *Sonarcloud* after building the application and passing all the tests.
 
   ```
   sonarcloud:
@@ -164,9 +164,9 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   ```
 
-- [**release.yml**](.github/workflows/release.yml): Se disparará con la publicación de cada nueva release, y contiene el siguiente job:
+- [**release.yml**](.github/workflows/release.yml): It will be triggered for each new release, and contains the following job:
 
-  - ***Build & push docker image***: Se construye y publica la imagen docker en el repositorio de dockerhub
+  - ***Build & push docker image***: Build and publish the docker image in the *Dockerhub* repository
 
   ```
   docker-image:
@@ -191,21 +191,21 @@ La integración continua se lleva a cabo empleando **GitHub Actions**, definiend
 
 ### Requisitos
 
-- **Helm** , que permitirá empaquetar y gestionar las aplicaciones de Kubernetes. Versión igual o superior a la v3.1.1.
+- **Helm** , that will allow you to package and manage your *Kubernetes* applications. Version equal to or greater than v3.1.1.
 
-- **fluxctl** , en una versión igual o superior a la v1.19.0, que nos permitirá acceder al servicio FluxCD instalado en el clúster de Kubernetes.
+- **fluxctl** , version equal to or greater than v1.19.0, which will allow us to access the FluxCD service installed in the *Kubernetes* cluster.
 
 ***
 
-La agrupación lógica del repositorio se basará en *namespaces*, que resultarán aquellos que también encontraremos en el clúster kubernetes en que se despliegue la aplicación.
+The logical grouping of the repository will be based on *namespaces*, which will be those that we will also find in the *Kubernetes* cluster where the application is deployed.
 
-Actualmente disponemos de los siguientes *namespaces*:
+The following *namespaces* are currently available:
 
-- **flux-system**: Donde situaremos los pods y servicios que se habilitan con la instalación de [*flux*](script/flux_install.sh) (incluido *helm-operator*). 
+- **flux-system**: Pods and services that are enabled with the installation of [*flux*](script/flux_install.sh) including *helm-operator*.
 
-- **tfm-springboot**: Donde se despliega la aplicación y la base de datos *mysql* asociada en entorno de **PRODUCCIÓN**. En las *annotations* del *deployment* del fichero [**application.yml**](namespaces/tfm-springboot/application.yml), indicaremos la configuración de *flux* relativa a la actualización automática de las imágenes de la aplicación. 
+- **tfm-springboot**: **PRODUCTION** environment where the application and the associated *MySQL* database are deployed. We will indicate in *deployment annotations* from file [**application.yml**](namespaces/tfm-springboot/application.yml), the configuration of *Flux* related to automatic update of application images.
 
-- **tfm-springboot-test**: Donde se despliega la aplicación y la base de datos *mysql* asociada en entorno de **TEST**. Las imágenes de la aplicación las actualizaremos de forma manual mediante la instrucción:
+- **tfm-springboot-test**: **TEST** environment where the application and the associated *MySQL* database are deployed. Application images will be updated manually, using:
 
 ```
 sudo fluxctl release --workload=${NAMESPACE}:deployment/${APP_NAME} -n ${NAMESPACE} --k8s-fwd-ns ${NAMESPACE} --update-image=${DOCKER_IMAGE_NAME}:${VERSION}
@@ -213,38 +213,38 @@ sudo fluxctl release --workload=${NAMESPACE}:deployment/${APP_NAME} -n ${NAMESPA
 
 ***
 
-En el fichero [**flux_install.sh**](script/flux_install.sh), que contiene todos los ajustes para instalar *flux*, cabe destacar algunas especificaciones como:
+File [**flux_install.sh**](script/flux_install.sh), contains all the settings to install *Flux*, and we must highlight some specifications such as:
 
 ```
 --set sync.interval=2m
 ```
 
-Que establece el intervalo de sincronización (ciclo de reconciliación) del clúster con el repositorio github.
+Which sets the synchronization interval (reconciliation cycle) of the cluster with the GitHub repository.
 
 ***
 
-Para establecer la comunicación entre la instalación de *flux* y el repositorio de github será necesario una key, que podemos obtener con la siguiente instrucción:
+A key will be required to establish communication between the *Flux* installation and the GitHub repository. We can obtain it with following instruction:
 
 ```
 sudo fluxctl identity --k8s-fwd-ns flux-system
 ```
 
-Esto nos devolverá una clave *ssh* que deberemos añadir como deploy key en el repositorio en *github*. También tendremos que activar la opción *Allow write access*.
+This will return an *ssh* key that we must add as a **deploy key** in the GitHub repository. Also, we will have to activate the *Allow write access* option.
 
-Una vez la deploy key sea validada, deberemos sincronizar *flux* con el repositorio, ejecutando la siguiente instrucción:
+Once the deploy key is validated, we must synchronize *Flux* with the repository, executing the following instruction:
+
 ```
 sudo fluxctl sync --k8s-fwd-ns flux-system
 ```
-Cuando termine la sincronización, de manera automática se creará una release en el repositorio de *github* que siempre apuntará al *latest commit*.
 
-En ese momento el clúster estará actualizado y podremos observar que disponemos de todos los deployments y namespaces que posee el repositorio.
+When the synchronization finishes, a release will automatically be created in the GitHub repository that will always point to latest commit.
 
-En caso de eliminar un deployment por error, *flux* en su periodo de reconciliación,
-establecido en este caso en 2 minutos, detectará que el estado del clúster no coincide con el del repositorio, y por tanto lo reestablecerá.
+At that time the cluster will be updated and we can see that we have all the deployments and namespaces that the repository has.
+
+In case of deleting a deployment by mistake, *Flux* in its reconciliation period, set in this case to 2 minutes, will detect that the state of the cluster does not match that of the repository, and will reestablish it.
 
 ***
 
-Por otra parte *flux* garantizará la automatización del despliegue mediante versionado semántico, actualizando el clúster y el repositorio *github*, cada vez que se añada al repositorio de imágenes una versión superior a la anterior.
+*Flux* will guarantee the automation of the deployment through semantic versioning, updating the cluster and the GitHub repository, each time that a version higher than the previous one is added to the image repository.
 
-En caso de que la última versión de la imágen se elimine, realizará un rollback y
-retornará automáticamente a la versión anterior.
+If the latest version of the image is removed, it will rollback and automatically return to the previous version.
