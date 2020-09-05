@@ -4,7 +4,7 @@
 
 ## NEW CUSTOMER
 
-_Formulario inicial de registro de cliente_
+_Initial customer registration form_
 
 * #### METHOD: GET
 
@@ -17,7 +17,7 @@ _Formulario inicial de registro de cliente_
 
 ## SAVE NEW CUSTOMER
 
-_Guardar nuevo cliente_
+_Save a new customer_
 
 * #### METHOD: POST
 
@@ -26,7 +26,7 @@ _Guardar nuevo cliente_
 
 ## CUSTOMER
 
-_Formulario de cliente donde seleccionaremos los datos de la compañía_
+_Client form where we will select the company data_
 
 * #### METHOD: GET
 
@@ -39,7 +39,7 @@ _Formulario de cliente donde seleccionaremos los datos de la compañía_
 
 ## SAVE COMPANY INFO
 
-_Guardar datos compañía asociada a cliente_
+_Save company data associated with customer_
 
 * #### METHOD: POST
 
@@ -48,7 +48,7 @@ _Guardar datos compañía asociada a cliente_
 
 ## PRODUCT
 
-_Formulario de selección de productos_
+_Product selection form_
 
 * #### METHOD: GET
 
@@ -61,7 +61,7 @@ _Formulario de selección de productos_
 
 ## SAVE NEW BUDGET
 
-_Guardar un nuevo presupuesto de cliente_
+_Save a new customer budget_
 
 * #### METHOD: POST
 
@@ -70,7 +70,7 @@ _Guardar un nuevo presupuesto de cliente_
 
 ## LAST BUDGET
 
-_Sumario datos presupuesto_
+_Budget data summary_
 
 * #### METHOD: GET
 

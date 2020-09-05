@@ -4,7 +4,7 @@
 
 ## GET ALL CUSTOMERS
 
-_Obtener un listado de todos los clientes incuyendo compañia y presupuestos_
+_Get a list of all customers including company and budgets_
 
 * #### METHOD: GET
 
@@ -63,7 +63,7 @@ _Obtener un listado de todos los clientes incuyendo compañia y presupuestos_
 
 ## GET CUSTOMER BY ID
 
-_Obtener toda la información de un cliente_
+_Get all the information of a specific customer_
 
 * #### METHOD: GET
 
@@ -100,7 +100,7 @@ _Obtener toda la información de un cliente_
 
 ## CREATE CUSTOMER
 
-_Crear un cliente_
+_Create new customer_
 
 * #### METHOD: POST
 
@@ -131,7 +131,7 @@ _Crear un cliente_
 
 ## GET ALL COMPANIES
 
-_Obtener un listado de todas las compañias incuyendo clientes_
+_Get a list of all companies including customers_
 
 * #### METHOD: GET
 
@@ -182,7 +182,7 @@ _Obtener un listado de todas las compañias incuyendo clientes_
 
 ## GET COMPANY BY ID
 
-_Obtener toda la información de una compañía_
+_Get all the information of a specific company_
 
 * #### METHOD: GET
 
@@ -216,7 +216,7 @@ _Obtener toda la información de una compañía_
 
 ## SET CUSTOMER COMPANY
 
-_Setea la compañía de un cliente_
+_Modify a customer's company_
 
 * #### METHOD: POST
 
@@ -246,7 +246,7 @@ _Setea la compañía de un cliente_
 
 ## GET ALL PRODUCTS
 
-_Obtener un listado de todos los productos incluyendo presupuestos a los que pertenecen_
+_Get a list of all products including budgets to which they belong_
 
 * #### METHOD: GET
 
@@ -336,7 +336,7 @@ _Obtener un listado de todos los productos incluyendo presupuestos a los que per
 
 ## GET PRODUCT BY ID
 
-_Obtener toda la información de un producto_
+_Get all the information of a specific product_
 
 * #### METHOD: GET
 
@@ -383,7 +383,7 @@ _Obtener toda la información de un producto_
 
 ## GET ALL BUDGETS
 
-_Obtener un listado de todos los presupuestos incluyendo productos que contienen y cliente a quien pertenecen_
+_Get a list of all budgets including products they contain and the customer to whom they belong_
 
 * #### METHOD: GET
 
@@ -486,7 +486,7 @@ _Obtener un listado de todos los presupuestos incluyendo productos que contienen
 
 ## GET BUDGET BY ID
 
-_Obtener toda la información de un presupuesto
+_Get all the information of a specific budget_
 
 * #### METHOD: GET
 
@@ -542,7 +542,7 @@ _Obtener toda la información de un presupuesto
 
 ## ADD CUSTOMER BUDGET
 
-_Añade un nuevo presupuesto a un cliente_
+_Add a new budget to a customer_
 
 * #### METHOD: POST
 
