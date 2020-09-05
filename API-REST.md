@@ -2,6 +2,8 @@
 
 ### [Go to repository](https://github.com/Rubru94/tfm-springboot)
 
+***
+
 ## GET ALL CUSTOMERS
 
 _Get a list of all customers including company and budgets_
@@ -61,6 +63,8 @@ _Get a list of all customers including company and budgets_
 	]
 	```
 
+***
+
 ## GET CUSTOMER BY ID
 
 _Get all the information of a specific customer_
@@ -98,6 +102,8 @@ _Get all the information of a specific customer_
 	}
 	```
 
+***
+
 ## CREATE CUSTOMER
 
 _Create new customer_
@@ -128,6 +134,8 @@ _Create new customer_
 		"budgets": []
 	}
 	```
+
+***
 
 ## GET ALL COMPANIES
 
@@ -180,6 +188,8 @@ _Get a list of all companies including customers_
 	]
 	```
 
+***
+
 ## GET COMPANY BY ID
 
 _Get all the information of a specific company_
@@ -214,6 +224,8 @@ _Get all the information of a specific company_
 	}
 	```
 
+***
+
 ## SET CUSTOMER COMPANY
 
 _Modify a customer's company_
@@ -243,6 +255,8 @@ _Modify a customer's company_
 		"industry": "Logistic"
 	}
 	```
+
+***
 
 ## GET ALL PRODUCTS
 
@@ -334,6 +348,8 @@ _Get a list of all products including budgets to which they belong_
 	]
 	```
 
+***
+
 ## GET PRODUCT BY ID
 
 _Get all the information of a specific product_
@@ -380,6 +396,7 @@ _Get all the information of a specific product_
 	}
 	```
 
+***
 
 ## GET ALL BUDGETS
 
@@ -484,6 +501,8 @@ _Get a list of all budgets including products they contain and the customer to w
 	]
 	```
 
+***
+
 ## GET BUDGET BY ID
 
 _Get all the information of a specific budget_
@@ -539,6 +558,8 @@ _Get all the information of a specific budget_
 		]
 	}
 	```
+
+***
 
 ## ADD CUSTOMER BUDGET
 
@@ -604,5 +625,6 @@ _Add a new budget to a customer_
 	}
 	```
 
+***
 
 ### [Go to repository](https://github.com/Rubru94/tfm-springboot)
