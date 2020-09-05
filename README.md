@@ -189,11 +189,11 @@ Continuous integration is carried out using **GitHub Actions**, defining some [w
 
 ## CD - Flux
 
-### Requisitos
+### Requirements
 
-- **Helm** , that will allow you to package and manage your *Kubernetes* applications. Version equal to or greater than v3.1.1.
+- **Helm**, that will allow you to package and manage your *Kubernetes* applications. Version equal to or greater than v3.1.1.
 
-- **fluxctl** , version equal to or greater than v1.19.0, which will allow us to access the FluxCD service installed in the *Kubernetes* cluster.
+- **fluxctl**, on version equal to or greater than v1.19.0, which will allow us to access the FluxCD service installed in the *Kubernetes* cluster.
 
 ***
 
@@ -201,7 +201,7 @@ The logical grouping of the repository will be based on *namespaces*, which will
 
 The following *namespaces* are currently available:
 
-- **flux-system**: Pods and services that are enabled with the installation of [*flux*](script/flux_install.sh) including *helm-operator*.
+- **flux-system**: Pods and services that are enabled with the installation of [*Flux*](script/flux_install.sh), including *helm-operator*.
 
 - **tfm-springboot**: **PRODUCTION** environment where the application and the associated *MySQL* database are deployed. We will indicate in *deployment annotations* from file [**application.yml**](namespaces/tfm-springboot/application.yml), the configuration of *Flux* related to automatic update of application images.
 
