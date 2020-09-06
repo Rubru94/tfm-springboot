@@ -8,7 +8,7 @@ It is based on an intuitive form, in charge of collecting basic data from the cl
 
 This project raises two technological perspectives notably distanced:
 
-- The first alternative is a *Java* project implemented with *Maven* and using *Springboot* as a framework, which offers a REST application with MySQL database deployed in a local *Kubernetes* cluster with *minikube*. This option is explained in the [**current repository WIKI**](https://github.com/Rubru94/tfm-springboot/wiki).
+- The first alternative is a *Java* project implemented with *Maven* and using *Springboot* as a framework, which offers a REST application with MySQL database deployed in a local *Kubernetes* cluster with *minikube*. This option is explained in [**current repository WIKI**](https://github.com/Rubru94/tfm-springboot/wiki).
 
 - The second option is based on *AWS serverless* technologies, using *API Gateway*, *Lambda* functions, *DynamoDB* database and *SAM*. [**Linked repository**](https://github.com/Gabriel-Acevedo/tfm-aws).
 
