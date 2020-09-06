@@ -14,7 +14,7 @@ _Initial customer registration form_
 
 * #### TEMPLATE: _newCustomer.html_
 
-![newCustomer.html](images/webTemplates/newCustomer.png)
+![newCustomer.html](../images/webTemplates/newCustomer.png)
 
 ***	
 
@@ -38,7 +38,7 @@ _Client form where we will select the company data_
 
 * #### TEMPLATE: _customer.html_
 
-![customer.html](images/webTemplates/customer.png)
+![customer.html](../images/webTemplates/customer.png)
 
 ***
 
@@ -62,7 +62,7 @@ _Product selection form_
 
 * #### TEMPLATE: _product.html_
 
-![product.html](images/webTemplates/product.png)
+![product.html](../images/webTemplates/product.png)
 
 ***
 
@@ -86,7 +86,7 @@ _Budget data summary_
 
 * #### TEMPLATE: _budget.html_
 
-![budget.html](images/webTemplates/budget.png)
+![budget.html](../images/webTemplates/budget.png)
 
 ***
 
