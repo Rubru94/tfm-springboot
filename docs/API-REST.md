@@ -626,5 +626,7 @@ _Add a new budget to a customer_
 	```
 
 ***
+For more details this [Postman collection](../TFM%20-%20springboot.postman_collection.json) is attached.
+***
 
 ### [Go to repository](https://github.com/Rubru94/tfm-springboot)
