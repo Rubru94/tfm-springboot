@@ -6,7 +6,7 @@ metadata:
   namespace: tfm-springboot
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.tfm-springboot: semver:~0.0
+    fluxcd.io/tag.tfm-springboot: semver:~1
 spec:
   selector:
     matchLabels:
