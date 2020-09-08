@@ -158,14 +158,51 @@ Continuous integration is carried out using **GitHub Actions**, defining some [w
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   ```
 
-- [**release.yml**](../.github/workflows/release.yml): It will be triggered for each new release, and contains the following job:
+- [**release.yml**](../.github/workflows/release.yml): It will be triggered for each new release, and contains the following jobs:
 
-    - ***Build & push docker image***: Build and publish the docker image in the *Dockerhub* repository
+    - ***Build app with all test***: Application is built passing all tests before build *Docker* image
+
+  ```
+  all_test:
+        name: Build app with all test
+        runs-on: ubuntu-latest
+        services:
+          mysql:
+            image: mysql:8
+            ports:
+              - 3306
+            env:
+              MYSQL_DATABASE: test
+              MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+            options: --health-cmd="mysqladmin ping" --health-interval=25s --health-timeout=5s --health-retries=3
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up JDK 11
+          uses: actions/setup-java@v1
+          with:
+            java-version: 11
+        - name: Set up MySQL
+          uses: mirromutth/mysql-action@v1.1
+          with:
+            character set server: 'utf8' 
+            collation server: 'utf8_general_ci'
+            mysql database: 'test' 
+            mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        - name: Build with Maven
+          run: mvn -B clean package -DskipTests --file pom.xml
+        - name: Pass all test
+          run: mvn -B test
+          env: 
+            DB_PORT: ${{ job.services.mysql.ports[3306] }}
+  ```
+
+    - ***Build & push docker image***: Build and publish the *Docker* image in the *Dockerhub* repository
 
   ```
   docker-image:
       name: Build & push docker image
       runs-on: ubuntu-latest
+      needs: [all_test]
       steps:
       - uses: actions/checkout@v2
       - name: Get the version
