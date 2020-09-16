@@ -36,6 +36,17 @@ public class ControllerUnitTest {
 		Customer customer = this.customerService.addCustomer(new Customer("TestName", "TestLastname", "test@mail.com"));
 		assertEquals(customer.getName(), "TestName");
 	}
+	
+	@Test
+	public void givenNewCustomerWithCompanyWhenAddToRepositoryThenNotError() throws Exception {
+		
+		Company company = new Company("B91882356", "SEGA", "Japan", "Other");
+		this.companyService.addCompany(company);
+		
+		Customer customer = this.customerService.addCustomer(new Customer("Hidekazu", "Yukawa", "hiyu@sega.com", company));
+		assertEquals(customer.getName(), "Hidekazu");
+		assertEquals(customer.getCompany().getName(), "SEGA");
+	}
 
 	@Test
 	public void givenCustomerWhenAddNewCompanyThenNotError() throws Exception {
