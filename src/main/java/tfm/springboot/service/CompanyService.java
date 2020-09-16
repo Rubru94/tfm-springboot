@@ -44,9 +44,9 @@ public class CompanyService {
 	public Company getCompany(long id) {
 
 		Optional<Company> co = companyRepository.findById(id);
+		
 		if (co.isPresent()) {
-			Company company = co.get();
-			return company;
+			return co.get();
 		}
 		return null;
 	}

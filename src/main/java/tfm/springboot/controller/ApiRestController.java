@@ -82,7 +82,7 @@ public class ApiRestController {
 	public List<FullCustomerDTO> listFullCustomers() {
 
 		List<Customer> customers = this.customerService.getAllCustomers();
-		return customers.stream().map((customer) -> this.customerService.convertToFullCustomerDTO(customer))
+		return customers.stream().map(customer -> this.customerService.convertToFullCustomerDTO(customer))
 				.collect(Collectors.toList());
 	}
 
@@ -171,7 +171,7 @@ public class ApiRestController {
 	public List<FullCompanyDTO> listFullCompanies() {
 
 		List<Company> companies = this.companyService.getAllCompanies();
-		return companies.stream().map((company) -> this.companyService.convertToFullCompanyDTO(company))
+		return companies.stream().map(company -> this.companyService.convertToFullCompanyDTO(company))
 				.collect(Collectors.toList());
 	}
 
@@ -189,7 +189,7 @@ public class ApiRestController {
 	public List<FullProductDTO> listProducts() {
 
 		List<Product> products = this.productService.getAllProducts();
-		return products.stream().map((product) -> this.productService.convertToFullProductDTO(product))
+		return products.stream().map(product -> this.productService.convertToFullProductDTO(product))
 				.collect(Collectors.toList());
 	}
 
@@ -207,7 +207,7 @@ public class ApiRestController {
 	public List<FullBudgetDTO> listFullBudgets() {
 
 		List<Budget> budgets = this.budgetService.getAllBudgets();
-		return budgets.stream().map((budget) -> this.budgetService.convertToFullBudgetDTO(budget))
+		return budgets.stream().map(budget -> this.budgetService.convertToFullBudgetDTO(budget))
 				.collect(Collectors.toList());
 	}
 

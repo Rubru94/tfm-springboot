@@ -35,9 +35,9 @@ public class CustomerService {
 	public Customer getCustomer(long id) {
 
 		Optional<Customer> op = customerRepository.findById(id);
-		if (op.isPresent()) {
-			Customer customer = op.get();
-			return customer;
+		
+		if (op.isPresent()) {	
+			return op.get();
 		}
 		return null;
 	}

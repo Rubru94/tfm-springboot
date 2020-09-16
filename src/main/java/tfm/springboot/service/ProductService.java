@@ -54,9 +54,9 @@ public class ProductService {
 	public Product getProductByCode(String code) {
 
 		Optional<Product> op = productRepository.findByCode(code);
+		
 		if (op.isPresent()) {
-			Product product = op.get();
-			return product;
+			return op.get();
 		}
 		return null;
 	}

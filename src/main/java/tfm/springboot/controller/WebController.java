@@ -37,6 +37,8 @@ public class WebController {
 
 	@Autowired
 	private BudgetService budgetService;
+	
+	final String ERROR_ATTRIBUTE_NAME = "errorMessage";
 
 	@GetMapping("/")
 	public String customers(Model model) {
@@ -48,7 +50,7 @@ public class WebController {
 	public String customer(HttpSession session, @PathVariable long id, Model model) {
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
-			model.addAttribute("errorMessage", "No existe un cliente con id " + id);
+			model.addAttribute(ERROR_ATTRIBUTE_NAME, "Not found client id " + id);
 			return "error";
 		}
 		Object userName = session.getAttribute("userName");
@@ -73,7 +75,7 @@ public class WebController {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
-			model.addAttribute("errorMessage", "Not found client id " + id);
+			model.addAttribute(ERROR_ATTRIBUTE_NAME, "Not found client id " + id);
 			return "error";
 		}
 
@@ -86,7 +88,7 @@ public class WebController {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
-			model.addAttribute("errorMessage", "Not found client id " + id);
+			model.addAttribute(ERROR_ATTRIBUTE_NAME, "Not found client id " + id);
 			return "error";
 		}
 
@@ -111,7 +113,7 @@ public class WebController {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
-			model.addAttribute("errorMessage", "Not found client id " + id);
+			model.addAttribute(ERROR_ATTRIBUTE_NAME, "Not found client id " + id);
 			return "error";
 		}
 
@@ -127,7 +129,7 @@ public class WebController {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
-			model.addAttribute("errorMessage", "Not found client id " + id);
+			model.addAttribute(ERROR_ATTRIBUTE_NAME, "Not found client id " + id);
 			return "error";
 		}
 
@@ -160,7 +162,7 @@ public class WebController {
 
 		Customer customer = this.customerService.getCustomer(id);
 		if (customer == null) {
-			model.addAttribute("errorMessage", "Not found client id " + id);
+			model.addAttribute(ERROR_ATTRIBUTE_NAME, "Not found client id " + id);
 			return "error";
 		}
 

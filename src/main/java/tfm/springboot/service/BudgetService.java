@@ -47,9 +47,9 @@ public class BudgetService {
 	public Budget getBudget(long id) {
 
 		Optional<Budget> op = budgetRepository.findById(id);
+		
 		if (op.isPresent()) {
-			Budget budget = op.get();
-			return budget;
+			return op.get();
 		}
 		return null;
 	}

@@ -31,9 +31,9 @@ public class BudgetProductService {
 	public BudgetProduct getBudgetProduct(long id) {
 
 		Optional<BudgetProduct> op = budgetProductRepository.findById(id);
+		
 		if (op.isPresent()) {
-			BudgetProduct budgetProduct = op.get();
-			return budgetProduct;
+			return op.get();
 		}
 		return null;
 	}
